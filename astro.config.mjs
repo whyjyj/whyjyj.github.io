@@ -6,8 +6,6 @@ import rehypeKatex from "rehype-katex";
 import remarkCollapse from "remark-collapse";
 import remarkMath from "remark-math";
 import remarkToc from "remark-toc";
-import { convertImageLink } from "./src/utils/convertImageLink";
-import { convertWikiLink } from "./src/utils/convertWikiLink";
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,9 +30,9 @@ export default defineConfig({
         },
       ],
       // Convert Obsidian image syntax
-      convertImageLink,
+    //   convertImageLink,
       // Convert Obsidian wiki link syntax
-      convertWikiLink,
+    //   convertWikiLink,
     ],
     rehypePlugins: [rehypeKatex],
     shikiConfig: {
