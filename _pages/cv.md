@@ -1,12 +1,19 @@
 ---
-layout: cv
+layout: page
 permalink: /cv/
-title: CV
+title: Curriculum Vitae
 nav: true
-nav_order: 5
-cv_pdf: /assets/pdf/example_pdf.pdf # you can also use external links here
-cv_format: rendercv # options: rendercv, jsonresume
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
+nav_order: 1
+description:
 ---
+
+Coming soon.
+
+{%- comment -%}
+To publish the real CV later, pick one of these:
+
+1. PDF — drop the file at assets/pdf/cv.pdf and replace the body above with a link,
+   or restore the redirect page that lived here before (see git history for \_pages/cv.html).
+2. Rendered page — set `layout: cv` and `cv_format: rendercv` in the front matter above;
+   the page is then built from \_data/cv.yml, which already holds a filled-in skeleton.
+   {%- endcomment -%}

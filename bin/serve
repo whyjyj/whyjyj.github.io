@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Local dev server with analytics disabled. See _config_dev.yml.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec bundle exec jekyll serve --config _config.yml,_config_dev.yml "$@"

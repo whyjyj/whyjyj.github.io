@@ -1,0 +1,13 @@
+# Local development overrides. NOT used by the production build.
+#
+# Layered on top of _config.yml only when you pass it explicitly:
+#   bundle exec jekyll serve --config _config.yml,_config_dev.yml
+# or just run `bin/serve`, which does that for you.
+#
+# The deploy workflow runs a plain `bundle exec jekyll build`, so it never sees
+# this file and analytics stay on in production.
+
+# Keep local page views out of Google Analytics. The al_analytics plugin skips a
+# provider entirely when its enable_* flag is false, so no GA script is emitted
+# and nothing is sent to Google while you work.
+enable_google_analytics: false
