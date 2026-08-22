@@ -27,7 +27,7 @@ announcements:
 
 I'm a Master's student in the [Graduate School of Artificial Intelligence](https://ai.postech.ac.kr/) at [POSTECH](https://www.postech.ac.kr/eng/). As a member of the [Computer Vision Lab](https://cvlab.postech.ac.kr), I am conducting research under the supervision of Prof. [Suha Kwak](https://suhakwak.github.io).
 
-My research interests lie in computer vision and deep learning, with a special focus on applying Video Understanding and Embodied AI to enable intelligent agents to operate effectively in the real world.
+My research focuses on Embodied AI, with particular interests in the robustness and evaluation of Vision-Language-Action (VLA) models, video understanding, and building intelligent agents that operate reliably in the real world.
 
 <div class="social">
   {%- comment -%} jekyll-socials hardcodes a plain `mailto:` for the email icon, so pipe its output
@@ -139,8 +139,10 @@ My research interests lie in computer vision and deep learning, with a special f
 
 <div class="publications">
   <h2>Publications</h2>
-  <!-- Entries marked `selected={true}` in _bibliography/papers.bib appear here. -->
-  {% bibliography --group_by none --query @*[selected=true]* %}
+  <!-- Entries marked `selected={true}` in _bibliography/papers.bib appear here.
+       No --group_by flag, so this inherits site.scholar.group_by (year, descending)
+       and prints a year heading above each group, like the publications page. -->
+  {% bibliography --query @*[selected=true]* %}
 </div>
 
 <div class="honors">
