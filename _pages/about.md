@@ -27,7 +27,7 @@ announcements:
 
 I'm a Master's student in the [Graduate School of Artificial Intelligence](https://ai.postech.ac.kr/) at [POSTECH](https://www.postech.ac.kr/eng/). As a member of the [Computer Vision Lab](https://cvlab.postech.ac.kr), I am conducting research under the supervision of Prof. [Suha Kwak](https://suhakwak.github.io).
 
-My research focuses on Embodied AI, with particular interests in the robustness and evaluation of Vision-Language-Action (VLA) models, video understanding, and building intelligent agents that operate reliably in the real world.
+My research focuses on Embodied AI and computer vision, with particular interests in Vision-Language-Action (VLA) models, their robustness and evaluation, and video understanding for intelligent agents operating in the real world.
 
 <div class="social">
   {%- comment -%} jekyll-socials hardcodes a plain `mailto:` for the email icon, so pipe its output
