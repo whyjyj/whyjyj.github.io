@@ -145,6 +145,18 @@ My research focuses on Embodied AI and computer vision, with particular interest
   {% bibliography --query @*[selected=true]* %}
 </div>
 
+<div class="services">
+  <h2>Professional Services</h2>
+  <!-- Add one <tr> per entry, newest first: reviewing, volunteering, organizing. -->
+  <div class="table-responsive">
+    <table class="table table-sm table-borderless">
+      <tr>
+        <td>Student Volunteer, Conference on Robot Learning (CoRL), 2025</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 <div class="honors">
   <h2>Honors and Awards</h2>
   <!-- Add one <tr> per award, newest first. -->
