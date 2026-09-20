@@ -6,8 +6,8 @@ subtitle:
 
 profile:
   align: right
-  image: profile.jpg # file in assets/img/
-  image_circular: true # crops the image to make it circular
+  image: profile2.jpg # file in assets/img/
+  image_circular: false # crops the image to make it circular
   more_info: # text shown under the photo; left blank on purpose
 
 # Every section below is rendered manually in the page body so the order matches
@@ -126,6 +126,25 @@ My research focuses on Embodied AI and computer vision, with particular interest
     }
     .publications .col.col-sm-2 {
       margin-bottom: 0.75rem;
+    }
+  }
+
+  /* With image_circular off the gem applies .rounded, whose 4px radius reads as a
+     hard rectangle at this size. Soften it. Bump the value to round the corners more. */
+  .profile img {
+    border-radius: 16px;
+  }
+
+  /* The gem sizes .profile at width:100% by default and only narrows it to 30%
+     inside (min-width: 576px), so on a phone the portrait spans the whole content
+     column. Cap it and centre it above the bio instead. */
+  @media (max-width: 575.98px) {
+    .profile.float-right,
+    .profile.float-left {
+      float: none;
+      width: 60%;
+      max-width: 220px;
+      margin: 0 auto 1rem;
     }
   }
 
