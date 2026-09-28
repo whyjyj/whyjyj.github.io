@@ -1,0 +1,650 @@
+---
+layout: null
+permalink: /
+title: Yoonjae Baek
+description: >-
+  Yoonjae Baek (백윤재) — M.S. student at POSTECH GSAI in the Computer Vision Lab, working on Embodied AI,
+  Vision-Language-Action models, and video understanding.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yoonjae Baek (백윤재)</title>
+    <meta name="description" content="{{ page.description | strip }}" />
+    <meta name="author" content="Yoonjae Baek" />
+    <meta name="keywords" content="{{ site.keywords }}" />
+    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/" />
+    <meta property="og:title" content="Yoonjae Baek — POSTECH GSAI" />
+    <meta property="og:description" content="{{ page.description | strip }}" />
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/img/profile2.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yoonjae Baek",
+        "alternateName": "백윤재",
+        "url": "{{ site.url }}{{ site.baseurl }}/",
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "POSTECH" },
+        "sameAs": [
+          "https://github.com/{{ site.data.socials.github_username }}",
+          "https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}"
+        ]
+      }
+    </script>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦾%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+    />
+
+    <!-- Resolve the theme before first paint so the page never flashes the wrong colours. -->
+    <script>
+      (function () {
+        var theme = "light";
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored === "light" || stored === "dark") theme = stored;
+          else if (window.matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    {%- if site.analytics.google %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "{{ site.analytics.google }}");
+    </script>
+    {%- endif %}
+
+    <!-- Styles live inline on purpose: deploy.yml runs PurgeCSS over _site/assets/css/, and it
+         would strip the [data-theme] selectors because the attribute is only set at runtime. -->
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --surface: #ffffff;
+        --text: #1c1c1e;
+        --muted: #6b6b70;
+        --line: #e6e4de;
+        --accent: #2f6fdf;
+        --accent-soft: rgba(47, 111, 223, 0.1);
+        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1115;
+        --surface: #161920;
+        --text: #e7e7ea;
+        --muted: #9a9ca5;
+        --line: #262a33;
+        --accent: #7aa7ff;
+        --accent-soft: rgba(122, 167, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--bg);
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 15.5px/1.65 var(--sans);
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .container {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 72px 20px 56px;
+      }
+
+      /* ---------- theme toggle ---------- */
+      .theme-toggle {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--surface);
+        color: var(--text);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+      }
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+      :root[data-theme="light"] .icon-sun,
+      :root[data-theme="dark"] .icon-moon {
+        display: none;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 36px;
+        align-items: center;
+        margin-bottom: 64px;
+      }
+      .photo {
+        width: 180px;
+        aspect-ratio: 5 / 7;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        display: block;
+      }
+      .name {
+        margin: 0 0 6px;
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      .name .dot {
+        color: var(--accent);
+      }
+      .name .hangul {
+        margin-left: 12px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0;
+      }
+      .role {
+        margin: 0 0 16px;
+        font: 0.88rem/1.7 var(--mono);
+        color: var(--muted);
+      }
+      .role .k {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .role .sep {
+        margin: 0 6px;
+        opacity: 0.5;
+      }
+      .tagline {
+        margin: 0 0 18px;
+        padding-left: 14px;
+        border-left: 2px solid var(--accent);
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: var(--mono);
+        font-size: 0.85rem;
+      }
+      .links a {
+        display: inline-block;
+        padding: 3px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--text);
+      }
+      .links a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* ---------- sections ---------- */
+      .section {
+        margin-bottom: 52px;
+      }
+      .section h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 20px;
+        font: 600 0.95rem var(--mono);
+        text-transform: lowercase;
+      }
+      .section h2 .num {
+        color: var(--accent);
+      }
+      .section h2 .rule {
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+      .section p {
+        margin: 0 0 12px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tags span {
+        padding: 4px 12px;
+        border-radius: 6px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font: 500 0.85rem var(--mono);
+      }
+
+      /* timestamped rows shared by news / experience / education / awards */
+      .rows {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .rows li {
+        display: grid;
+        grid-template-columns: 175px 1fr;
+        gap: 18px;
+        padding: 9px 0;
+        border-bottom: 1px dashed var(--line);
+      }
+      .rows li:last-child {
+        border-bottom: 0;
+      }
+      .rows .ts {
+        font: 0.83rem/1.9 var(--mono);
+        color: var(--muted);
+      }
+      .rows .sub {
+        display: block;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      /* ---------- publications ---------- */
+      .pub {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 22px;
+        padding: 18px;
+        margin-bottom: 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+      }
+      .pub .thumb {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .pub .venue {
+        font: 600 0.78rem var(--mono);
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .pub h3 {
+        margin: 4px 0 6px;
+        font-size: 1.02rem;
+        line-height: 1.4;
+      }
+      .pub .authors {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .pub .me {
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .pub .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font: 0.82rem var(--mono);
+      }
+      .pub .actions button {
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--accent);
+        font: inherit;
+        cursor: pointer;
+      }
+      .pub .abstract {
+        display: none;
+        grid-column: 1 / -1;
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .pub.open .abstract {
+        display: block;
+      }
+
+      footer {
+        margin-top: 64px;
+        font: 0.8rem var(--mono);
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding-top: 64px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          text-align: left;
+        }
+        .photo {
+          width: 150px;
+        }
+        .name {
+          font-size: 2rem;
+        }
+        .name .hangul {
+          display: block;
+          margin: 4px 0 0;
+        }
+        .rows li {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .pub {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+      </svg>
+    </button>
+
+    <main class="container">
+      <header class="hero">
+        <img src="{{ '/assets/img/profile2.jpg' | relative_url }}" alt="Yoonjae Baek" class="photo" />
+        <div>
+          <h1 class="name">Yoonjae Baek<span class="dot">.</span><span class="hangul">백윤재</span></h1>
+          <p class="role">
+            <span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a>
+            <span class="sep">·</span>
+            <span class="k">advisor</span> <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>
+            <span class="sep">·</span>
+            <span class="k">lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a>
+          </p>
+          <p class="tagline">Teaching robots to see, reason, and act reliably in the real world.</p>
+          <ul class="links">
+            <!-- The address is assembled in JS so the static HTML carries no scrapeable user@host. -->
+            <li><a id="emailLink" href="#" data-user="yoonjae.baek" data-host="postech.ac.kr">email</a></li>
+            <li>
+              <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" target="_blank" rel="noopener">scholar</a>
+            </li>
+            <li><a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener">github</a></li>
+            <li><a href="{{ '/cv/' | relative_url }}">cv</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2><span class="num">01</span><span>about</span><span class="rule"></span></h2>
+        <p>
+          I'm a Master's student in the
+          <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">Graduate School of Artificial Intelligence</a> at
+          <a href="https://www.postech.ac.kr/eng/" target="_blank" rel="noopener">POSTECH</a>, working in the
+          <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a> under the supervision of Prof.
+          <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>.
+        </p>
+        <p>
+          My research focuses on Embodied AI and computer vision, with particular interests in Vision-Language-Action (VLA) models, their robustness
+          and evaluation, and video understanding for intelligent agents operating in the real world.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">02</span><span>interests</span><span class="rule"></span></h2>
+        <div class="tags">
+          <span>Embodied AI</span>
+          <span>Vision-Language-Action Models</span>
+          <span>Robustness &amp; Evaluation</span>
+          <span>Video Understanding</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">03</span><span>news</span><span class="rule"></span></h2>
+        <!-- Rendered from _news/, newest first. Add a file there to add an entry. -->
+        <ul class="rows">
+          {%- assign news = site.news | sort: "date" | reverse %} {%- for item in news %}
+          <li>
+            <span class="ts">{{ item.date | date: "%b %Y" }}</span>
+            <span
+              >{{ item.content | strip | remove: "
+              <p>" | remove: "</p>
+              " }}</span
+            >
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">04</span><span>publications</span><span class="rule"></span></h2>
+
+        <article class="pub">
+          <img
+            src="{{ '/assets/img/publication_preview/self_compensating_vla.png' | relative_url }}"
+            alt="Self-Compensating VLA teaser"
+            class="thumb"
+          />
+          <div>
+            <div class="venue">Under Review · 2026</div>
+            <h3>Robustness to Robot Hardware Imperfections: A Benchmark and a Self-Compensating VLA</h3>
+            <p class="authors">
+              Sohyun Lee*, <span class="me">Yoonjae Baek</span>*, Jaesang Won, Jinnyeong Kim, Seung-Hwan Baek, Ivan Laptev, Suha Kwak <br />(*equal
+              contribution)
+            </p>
+            <div class="actions"><button type="button" data-abstract>abstract</button></div>
+          </div>
+          <p class="abstract">
+            In this paper, we investigate the robustness of vision-language-action (VLA) models against hardware imperfections. To circumvent the high
+            costs of physical testing, we first introduce a new simulated benchmark, termed Simulated Hardware IMperfections (SHIM), for rigorous
+            evaluation of VLA robustness under precisely controlled hardware imperfections. SHIM models physical hardware realities by incorporating
+            state-dependent, non-Markovian, and joint-level noises, and offers deployment scenarios that combine these noises to approximate
+            real-world composite imperfections. We further present Self-Compensating VLA, a deployment-time adaptation framework that enables a VLA
+            policy to adapt to hardware imperfections on the fly. Our framework adapts online from the residual between its commanded and executed
+            motion, compensating for them without labels. Experiments on SHIM show that our framework broadly improves upon the base policy across
+            diverse settings and successfully adapts to two physical robots with distinct imperfections.
+          </p>
+        </article>
+
+        <article class="pub">
+          <img src="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" alt="EventCoT teaser" class="thumb" />
+          <div>
+            <div class="venue">arXiv · 2026</div>
+            <h3>EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization</h3>
+            <p class="authors">Youngkil Song, <span class="me">Yoonjae Baek</span>, Dongwon Kim, Inho Kim, Dongkeun Kim, Suha Kwak</p>
+            <div class="actions">
+              <a href="https://arxiv.org/abs/2607.04872" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2607.04872" target="_blank" rel="noopener">pdf</a>
+              <button type="button" data-abstract>abstract</button>
+            </div>
+          </div>
+          <p class="abstract">
+            Reasoning temporal localization (RTL) requires a model to generate an answer that itself contains the time interval supporting it, so
+            high-level reasoning and precise temporal grounding must be produced jointly in a single response. To tackle this challenging task, we
+            propose the first event-centric video chain-of-thought framework, dubbed EventCoT. EventCoT first performs event-centric tokenization of
+            the input video to convert it into compact event tokens, enabling efficient identification of question-relevant events. It then reasons
+            within the identified events to generate the answer, grounding the time interval via embedding matching that aligns placeholder tokens
+            with visual embeddings. EventCoT achieves state-of-the-art results on ActivityNet-RTL for reasoning temporal localization while using
+            substantially fewer visual tokens than previous work. To verify its general performance, we further evaluate EventCoT on the grounded
+            video question answering benchmark ReXTime, where it attains strong zero-shot results.
+          </p>
+        </article>
+
+        <article class="pub">
+          <img src="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" alt="DPSeg teaser" class="thumb" />
+          <div>
+            <div class="venue">Neurocomputing (Q1) · 2026</div>
+            <h3>Dual Path Semantic Segmentation with Locality Guidance Tokens</h3>
+            <p class="authors">
+              Jaeik Kim, <span class="me">Yoonjae Baek</span>, Aecheon Jung, Hongyeob Kim, Soyun Choi, Youngeun Kim, Jaeyoung Do, Sungeun Hong
+            </p>
+            <div class="actions"><button type="button" data-abstract>abstract</button></div>
+          </div>
+          <p class="abstract">
+            Learnable tokens have shown effectiveness in semantic segmentation by capturing local information, yet most methods rely on late fusion at
+            the decoder, losing fine-grained locality. Our theoretical and empirical analyses reveal that the timing and strategy of token integration
+            significantly influence feature alignment and segmentation accuracy. We propose Dual Path Segmentation (DPSeg), a lightweight and
+            model-agnostic framework that preserves locality throughout encoding and decoding. Our proposed Locality Guidance (LG) tokens play two
+            roles: (i) guiding adjacent patches during encoding to enhance object-consistent attention and fine-grained representations, and (ii)
+            serving as mask proposals in decoding to refine structural consistency. Our path mixing decoder integrates local details with global
+            context without extra data or architectural changes. DPSeg consistently improves performance across various baselines and achieves
+            promising results on various datasets.
+          </p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">05</span><span>experience</span><span class="rule"></span></h2>
+        <ul class="rows">
+          <li>
+            <span class="ts">Feb 2025 – Present</span>
+            <span
+              >Research and Teaching Assistant, <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a>, POSTECH
+              <span class="sub">Pohang, South Korea</span></span
+            >
+          </li>
+          <li>
+            <span class="ts">Jan 2024 – Jun 2024</span>
+            <span
+              >Undergraduate Research Intern, AI &amp; Media (AIM) Lab,
+              <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a>
+              <span class="sub"
+                >Seoul, South Korea · Advisor: Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span
+              ></span
+            >
+          </li>
+          <li>
+            <span class="ts">Nov 2019 – Nov 2020</span>
+            <span
+              >President, Student Council of the Department of Computer Education, Sungkyunkwan University
+              <span class="sub">Seoul, South Korea</span></span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">06</span><span>education</span><span class="rule"></span></h2>
+        <ul class="rows">
+          <li>
+            <span class="ts">Feb 2025 – Present</span>
+            <span
+              >M.S. in Artificial Intelligence, <a href="https://www.postech.ac.kr/" target="_blank" rel="noopener">POSTECH</a>
+              <span class="sub">Graduate School of Artificial Intelligence · Advisor: Prof. Suha Kwak</span></span
+            >
+          </li>
+          <li>
+            <span class="ts">Mar 2018 – Feb 2025</span>
+            <span
+              >B.S. in Computer Education, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University (SKKU)</a>
+              <span class="sub">Advisor: Prof. Sungeun Hong</span></span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">07</span><span>services</span><span class="rule"></span></h2>
+        <ul class="rows">
+          <li>
+            <span class="ts">2025</span>
+            <span>Student Volunteer, Conference on Robot Learning (CoRL)</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">08</span><span>honors</span><span class="rule"></span></h2>
+        <ul class="rows">
+          <li>
+            <span class="ts">Feb 2026</span>
+            <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding (IPIU)</span>
+          </li>
+        </ul>
+      </section>
+
+      <footer>© {{ site.time | date: "%Y" }} Yoonjae Baek</footer>
+    </main>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        document.getElementById("themeToggle").addEventListener("click", function () {
+          var next = root.dataset.theme === "dark" ? "light" : "dark";
+          root.dataset.theme = next;
+          try {
+            localStorage.setItem("theme", next);
+          } catch (e) {}
+        });
+
+        var email = document.getElementById("emailLink");
+        email.href = "mailto:" + email.dataset.user + "@" + email.dataset.host;
+
+        document.querySelectorAll("[data-abstract]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            btn.closest(".pub").classList.toggle("open");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
