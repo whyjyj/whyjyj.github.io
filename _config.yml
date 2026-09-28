@@ -195,7 +195,7 @@ collections:
   news:
     defaults:
       layout: post
-    output: true
+    output: false # entries are listed on the home page only; no per-item pages
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

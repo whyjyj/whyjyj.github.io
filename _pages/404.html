@@ -1,0 +1,80 @@
+---
+layout: null
+permalink: /404.html
+sitemap: false
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="3; url={{ '/' | relative_url }}" />
+    <title>Page not found · Yoonjae Baek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" />
+    <!-- Same palette as the home page; follows the theme the visitor picked there. -->
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t !== "light" && t !== "dark") t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --text: #1c1c1e;
+        --muted: #6b6b70;
+        --accent: #2f6fdf;
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1115;
+        --text: #e7e7ea;
+        --muted: #9a9ca5;
+        --accent: #7aa7ff;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+      }
+      body {
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        color: var(--text);
+        font:
+          15px/1.7 "IBM Plex Mono",
+          ui-monospace,
+          Menlo,
+          monospace;
+        text-align: center;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      h1 span {
+        color: var(--accent);
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+      a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1><span>404</span> · page not found</h1>
+      <p>Redirecting to the <a href="{{ '/' | relative_url }}">home page</a> in 3 seconds.</p>
+    </main>
+  </body>
+</html>
