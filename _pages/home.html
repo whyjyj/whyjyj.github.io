@@ -2,6 +2,9 @@
 layout: null
 permalink: /
 title: Yoonjae Baek
+# News bodies render as <p>…</p>; the tags live here because Prettier rewrites "<p>" strings inside the HTML body.
+p_open: "<p>"
+p_close: "</p>"
 description: >-
   Yoonjae Baek (백윤재) — M.S. student at POSTECH GSAI in the Computer Vision Lab, working on Embodied AI,
   Vision-Language-Action models, and video understanding.
@@ -420,7 +423,7 @@ description: >-
             <span class="sep">·</span>
             <span class="k">lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a>
           </p>
-          <p class="tagline">Teaching robots to see, reason, and act reliably in the real world.</p>
+          <p class="tagline">Building intelligent agents that perceive, reason, and act in the real world.</p>
           <ul class="links">
             <!-- The address is assembled in JS so the static HTML carries no scrapeable user@host. -->
             <li><a id="emailLink" href="#" data-user="yoonjae.baek" data-host="postech.ac.kr">email</a></li>
@@ -443,8 +446,9 @@ description: >-
           <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>.
         </p>
         <p>
-          My research focuses on Embodied AI and computer vision, with particular interests in Vision-Language-Action (VLA) models, their robustness
-          and evaluation, and video understanding for intelligent agents operating in the real world.
+          My research goal is to build intelligent agents that operate in the real world. Toward this goal, I work on Embodied AI and computer vision:
+          Vision-Language-Action (VLA) models that connect perception and language to physical action, how to make such agents keep working once they
+          are deployed outside controlled settings, and video understanding that lets them reason about how events unfold over time.
         </p>
       </section>
 
@@ -453,7 +457,7 @@ description: >-
         <div class="tags">
           <span>Embodied AI</span>
           <span>Vision-Language-Action Models</span>
-          <span>Robustness &amp; Evaluation</span>
+          <span>Real-World Deployment</span>
           <span>Video Understanding</span>
         </div>
       </section>
@@ -462,14 +466,11 @@ description: >-
         <h2><span class="num">03</span><span>news</span><span class="rule"></span></h2>
         <!-- Rendered from _news/, newest first. Add a file there to add an entry. -->
         <ul class="rows">
-          {%- assign news = site.news | sort: "date" | reverse %} {%- for item in news %}
+          {%- assign news = site.news | sort: "date" | reverse %} {%- for item in news %} {%- assign msg = item.content | strip | remove: page.p_open
+          | remove: page.p_close %}
           <li>
             <span class="ts">{{ item.date | date: "%b %Y" }}</span>
-            <span
-              >{{ item.content | strip | remove: "
-              <p>" | remove: "</p>
-              " }}</span
-            >
+            <span>{{ msg }}</span>
           </li>
           {%- endfor %}
         </ul>
@@ -494,14 +495,16 @@ description: >-
             <div class="actions"><button type="button" data-abstract>abstract</button></div>
           </div>
           <p class="abstract">
-            In this paper, we investigate the robustness of vision-language-action (VLA) models against hardware imperfections. To circumvent the high
-            costs of physical testing, we first introduce a new simulated benchmark, termed Simulated Hardware IMperfections (SHIM), for rigorous
-            evaluation of VLA robustness under precisely controlled hardware imperfections. SHIM models physical hardware realities by incorporating
-            state-dependent, non-Markovian, and joint-level noises, and offers deployment scenarios that combine these noises to approximate
-            real-world composite imperfections. We further present Self-Compensating VLA, a deployment-time adaptation framework that enables a VLA
-            policy to adapt to hardware imperfections on the fly. Our framework adapts online from the residual between its commanded and executed
-            motion, compensating for them without labels. Experiments on SHIM show that our framework broadly improves upon the base policy across
-            diverse settings and successfully adapts to two physical robots with distinct imperfections.
+            Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution
+            errors arise from the robot's mechanics and operating conditions, such as wear and payload changes. We propose self-compensating VLA, a
+            deployment-time adaptation method that enables a VLA policy to pre-compensate for the robot's execution errors when generating commands.
+            Without task rewards or labels, it updates the policy online using the residual between the action commanded by a VLA and the motion
+            executed by the robot. To stress-test VLA robustness across execution conditions that are impractical to cover with physical robots alone,
+            we introduce RoboStress, a controlled simulation benchmark. It combines established joint-level models of friction, backlash, compliance,
+            and gravity-compensation error into seven deployment scenarios whose execution errors depend on the robot's state and motion history. On
+            RoboStress, self-compensating VLA achieves higher average task success than both the base policies and methods that build in robustness
+            during training. On two physical robot arms with different usage histories, it raises the average task success rate by more than 30
+            percentage points on each arm, and the gains extend to objects not seen in the task demonstrations.
           </p>
         </article>
 
