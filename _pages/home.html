@@ -162,15 +162,17 @@ description: >-
       }
 
       /* ---------- hero ---------- */
+      /* Photo and text stay side by side at every width; the photo column and gap scale with
+         the viewport instead of the layout collapsing to one column on phones. */
       .hero {
         display: grid;
-        grid-template-columns: 180px 1fr;
-        gap: 36px;
+        grid-template-columns: clamp(104px, 27vw, 180px) 1fr;
+        gap: clamp(16px, 4.5vw, 36px);
         align-items: center;
         margin-bottom: 64px;
       }
       .photo {
-        width: 180px;
+        width: 100%;
         /* The source is 5:7; a shorter box with the image pinned to the top trims only the bottom. */
         aspect-ratio: 5 / 6;
         object-fit: cover;
@@ -181,7 +183,7 @@ description: >-
       }
       .name {
         margin: 0 0 6px;
-        font-size: 2.4rem;
+        font-size: clamp(1.45rem, 6.5vw, 2.4rem);
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.15;
@@ -205,9 +207,11 @@ description: >-
         color: var(--text);
         font-weight: 500;
       }
-      .role .sep {
-        margin: 0 6px;
-        opacity: 0.5;
+      /* One affiliation per line: the full list never fits beside the photo, and wrapping
+         it inline left a stray separator at the end of a line. */
+      .role .item {
+        display: block;
+        white-space: nowrap;
       }
       .tagline {
         margin: 0 0 18px;
@@ -379,15 +383,26 @@ description: >-
           padding-top: 64px;
         }
         .hero {
-          grid-template-columns: 1fr;
-          gap: 22px;
-          text-align: left;
+          align-items: start;
+          margin-bottom: 48px;
         }
-        .photo {
-          width: 150px;
+        .role {
+          margin-bottom: 12px;
+          font-size: 0.78rem;
+          line-height: 1.6;
         }
-        .name {
-          font-size: 2rem;
+        .tagline {
+          margin-bottom: 14px;
+          padding-left: 10px;
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+        .links {
+          gap: 6px;
+          font-size: 0.78rem;
+        }
+        .links a {
+          padding: 2px 9px;
         }
         .name .hangul {
           display: block;
@@ -418,11 +433,13 @@ description: >-
         <div>
           <h1 class="name">Yoonjae Baek<span class="dot">.</span><span class="hangul">백윤재</span></h1>
           <p class="role">
-            <span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a>
-            <span class="sep">·</span>
-            <span class="k">advisor</span> <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>
-            <span class="sep">·</span>
-            <span class="k">lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a>
+            <span class="item"
+              ><span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a></span
+            >
+            <span class="item"><span class="k">advisor</span> <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a></span>
+            <span class="item"
+              ><span class="k">lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a></span
+            >
           </p>
           <p class="tagline">Building intelligent agents that perceive, reason, and act in the real world.</p>
           <ul class="links">
