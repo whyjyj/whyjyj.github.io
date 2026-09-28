@@ -90,6 +90,7 @@ description: >-
         --line: #e6e4de;
         --accent: #2f6fdf;
         --accent-soft: rgba(47, 111, 223, 0.1);
+        --shadow: rgba(0, 0, 0, 0.28);
         --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
       }
@@ -101,6 +102,7 @@ description: >-
         --line: #262a33;
         --accent: #7aa7ff;
         --accent-soft: rgba(122, 167, 255, 0.12);
+        --shadow: rgba(0, 0, 0, 0.7);
       }
 
       * {
@@ -304,25 +306,34 @@ description: >-
       }
 
       /* ---------- publications ---------- */
-      /* Figure on top at full card width: the teasers are all wide (2.5–3.3 : 1), so a side
-         column would shrink them to a strip. Natural height keeps each at its own ratio. */
+      /* List rows with a framed teaser on the left, in the style of yehogwon.github.io: the
+         teasers are wide (2.5–3.3 : 1), so each keeps its own ratio at about a third of the
+         width instead of being boxed into a fixed thumbnail shape. */
       .pub {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 18px;
-        margin-bottom: 14px;
+        grid-template-columns: minmax(0, 36%) 1fr;
+        gap: 12px 24px;
+        align-items: start;
+        margin-bottom: 30px;
+      }
+      .pub .thumb-link {
+        display: block;
+        padding: 6px;
+        background: #fff;
         border: 1px solid var(--line);
-        border-radius: 12px;
-        background: var(--surface);
+        box-shadow: 0 6px 16px -8px var(--shadow);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .pub .thumb-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px -8px var(--shadow);
       }
       .pub .thumb {
         display: block;
         width: 100%;
         height: auto;
-        padding: 10px;
-        border-radius: 8px;
-        background: #fff;
       }
       .pub .venue {
         font: 600 0.78rem var(--mono);
@@ -412,6 +423,9 @@ description: >-
           grid-template-columns: 1fr;
           gap: 0;
         }
+        .pub {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -497,11 +511,12 @@ description: >-
         <h2><span class="num">04</span><span>publications</span><span class="rule"></span></h2>
 
         <article class="pub">
-          <img
-            src="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}"
-            alt="Self-compensating VLA and the RoboStress benchmark"
-            class="thumb"
-          />
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}" target="_blank" rel="noopener"
+            ><img
+              src="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}"
+              alt="Self-compensating VLA and the RoboStress benchmark"
+              class="thumb"
+          /></a>
           <div>
             <div class="venue">Under Review · 2026</div>
             <h3>Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing</h3>
@@ -526,7 +541,9 @@ description: >-
         </article>
 
         <article class="pub">
-          <img src="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" alt="EventCoT teaser" class="thumb" />
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" target="_blank" rel="noopener"
+            ><img src="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" alt="EventCoT teaser" class="thumb"
+          /></a>
           <div>
             <div class="venue">arXiv · 2026</div>
             <h3>EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization</h3>
@@ -550,7 +567,9 @@ description: >-
         </article>
 
         <article class="pub">
-          <img src="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" alt="DPSeg teaser" class="thumb" />
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" target="_blank" rel="noopener"
+            ><img src="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" alt="DPSeg teaser" class="thumb"
+          /></a>
           <div>
             <div class="venue">Neurocomputing · 2026</div>
             <h3>Dual Path Semantic Segmentation with Locality Guidance Tokens</h3>
