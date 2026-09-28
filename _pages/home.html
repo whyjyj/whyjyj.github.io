@@ -171,8 +171,10 @@ description: >-
       }
       .photo {
         width: 180px;
-        aspect-ratio: 5 / 7;
+        /* The source is 5:7; a shorter box with the image pinned to the top trims only the bottom. */
+        aspect-ratio: 5 / 6;
         object-fit: cover;
+        object-position: top;
         border-radius: 14px;
         border: 1px solid var(--line);
         display: block;
