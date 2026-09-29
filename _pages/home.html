@@ -304,6 +304,10 @@ description: >-
         color: var(--muted);
         font-size: 0.92rem;
       }
+      /* Keeps "Prof. Name" on one line so a narrow screen never splits the title from the name. */
+      .nb {
+        white-space: nowrap;
+      }
 
       /* ---------- publications ---------- */
       /* List rows with a framed teaser on the left, in the style of yehogwon.github.io: the
@@ -627,8 +631,9 @@ description: >-
             <span
               >Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>,
               <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a>
+              <span class="sub">Seoul, South Korea</span>
               <span class="sub"
-                >Seoul, South Korea · Advisor: Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span
+                >Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span
               ></span
             >
           </li>
@@ -649,12 +654,16 @@ description: >-
             <span class="ts">Feb 2025 – Present</span>
             <span
               >M.S. in Artificial Intelligence, POSTECH
-              <span class="sub">Graduate School of Artificial Intelligence · Advisor: Prof. Suha Kwak</span></span
+              <span class="sub">Graduate School of Artificial Intelligence</span>
+              <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span
             >
           </li>
           <li>
             <span class="ts">Mar 2018 – Feb 2025</span>
-            <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: Prof. Sungeun Hong</span></span>
+            <span
+              >B.S. in Computer Education, Sungkyunkwan University (SKKU)
+              <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span
+            >
           </li>
         </ul>
       </section>
