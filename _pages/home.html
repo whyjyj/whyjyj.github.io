@@ -426,6 +426,11 @@ description: >-
         .pub {
           grid-template-columns: 1fr;
         }
+        /* Cap the stacked teaser so crossing the breakpoint doesn't jump it from ~210px beside
+           the text to the full ~600px column; on phones the column is narrower than this anyway. */
+        .pub .thumb-link {
+          max-width: 360px;
+        }
       }
     </style>
   </head>
