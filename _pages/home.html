@@ -393,20 +393,44 @@ description: >-
         .container {
           padding-top: 64px;
         }
+        /* Only the name and affiliations sit beside the photo, which matches its height; the
+           tagline and links drop below at full width so no gap opens under the photo. */
         .hero {
+          grid-template-columns: clamp(96px, 27vw, 180px) minmax(0, 1fr);
+          grid-template-rows: auto auto;
+          row-gap: 0;
           align-items: start;
           margin-bottom: 48px;
         }
+        .hero > div {
+          display: contents;
+        }
+        .photo {
+          grid-row: 1 / 3;
+          align-self: center;
+        }
+        .name {
+          grid-column: 2;
+          align-self: end;
+        }
         .role {
-          margin-bottom: 12px;
+          grid-column: 2;
+          margin: 8px 0 0;
           font-size: 0.78rem;
           line-height: 1.6;
         }
+        .role .item {
+          white-space: normal;
+        }
         .tagline {
-          margin-bottom: 14px;
+          grid-column: 1 / -1;
+          margin: 18px 0 14px;
           padding-left: 10px;
-          font-size: 0.9rem;
+          font-size: 0.92rem;
           line-height: 1.5;
+        }
+        .links {
+          grid-column: 1 / -1;
         }
         .links {
           gap: 6px;
