@@ -455,6 +455,13 @@ description: >-
           grid-template-columns: 1fr;
         }
       }
+      /* Smallest phones: shrink the affiliations so "Advisor Prof. Suha Kwak" and
+         "Lab Computer Vision Lab" still fit on one line beside the photo. */
+      @media (max-width: 360px) {
+        .role {
+          font-size: 0.7rem;
+        }
+      }
     </style>
   </head>
 
@@ -478,7 +485,10 @@ description: >-
             <span class="item"
               ><span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a></span
             >
-            <span class="item"><span class="k">Advisor</span> <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a></span>
+            <span class="item"
+              ><span class="k">Advisor</span>
+              <span class="nb">Prof. <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a></span></span
+            >
             <span class="item"
               ><span class="k">Lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a></span
             >
