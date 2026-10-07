@@ -18,6 +18,13 @@ description: >-
     <title>Yoonjae Baek (백윤재)</title>
     <meta name="description" content="{{ page.description | strip }}" />
     <meta name="author" content="Yoonjae Baek" />
+    <!-- Search-engine ownership tags. This page skips the al-folio layout, so they are rendered
+         here from the values in _config.yml; fill one in there and set its enable_* flag. -->
+    {%- if site.enable_google_verification and site.google_site_verification %}
+    <meta name="google-site-verification" content="{{ site.google_site_verification }}" />
+    {%- endif %} {%- if site.enable_bing_verification and site.bing_site_verification %}
+    <meta name="msvalidate.01" content="{{ site.bing_site_verification }}" />
+    {%- endif %}
     <meta name="keywords" content="{{ site.keywords }}" />
     <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/" />
 
@@ -25,7 +32,7 @@ description: >-
     <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/" />
     <meta property="og:title" content="Yoonjae Baek — POSTECH GSAI" />
     <meta property="og:description" content="{{ page.description | strip }}" />
-    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/img/profile2.jpg" />
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/img/profile.jpg" />
     <meta name="twitter:card" content="summary" />
 
     <script type="application/ld+json">
@@ -478,7 +485,7 @@ description: >-
 
     <main class="container">
       <header class="hero">
-        <img src="{{ '/assets/img/profile2.jpg' | relative_url }}" alt="Yoonjae Baek" class="photo" />
+        <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Yoonjae Baek" class="photo" />
         <div>
           <h1 class="name">Yoonjae Baek<span class="dot">.</span><span class="hangul">백윤재</span></h1>
           <p class="role">
@@ -549,9 +556,10 @@ description: >-
         <h2><span class="num">04</span><span>publications</span><span class="rule"></span></h2>
 
         <article class="pub">
-          <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}" target="_blank" rel="noopener"
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img
-              src="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}"
+              src="{{ '/assets/img/publication_preview/robostress-thumb.jpg' | relative_url }}"
+              loading="lazy"
               alt="Self-compensating VLA and the RoboStress benchmark"
               class="thumb"
           /></a>
@@ -585,7 +593,11 @@ description: >-
 
         <article class="pub">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" target="_blank" rel="noopener"
-            ><img src="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" alt="Action errors around subskill transitions" class="thumb"
+            ><img
+              src="{{ '/assets/img/publication_preview/race-thumb.jpg' | relative_url }}"
+              loading="lazy"
+              alt="Action errors around subskill transitions"
+              class="thumb"
           /></a>
           <div>
             <div class="venue">Under Review · 2026</div>
@@ -616,8 +628,8 @@ description: >-
         </article>
 
         <article class="pub">
-          <a class="thumb-link" href="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" target="_blank" rel="noopener"
-            ><img src="{{ '/assets/img/publication_preview/eventcot.png' | relative_url }}" alt="EventCoT teaser" class="thumb"
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/eventcot.jpg' | relative_url }}" target="_blank" rel="noopener"
+            ><img src="{{ '/assets/img/publication_preview/eventcot-thumb.jpg' | relative_url }}" loading="lazy" alt="EventCoT teaser" class="thumb"
           /></a>
           <div>
             <div class="venue">arXiv · 2026</div>
@@ -642,8 +654,8 @@ description: >-
         </article>
 
         <article class="pub">
-          <a class="thumb-link" href="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" target="_blank" rel="noopener"
-            ><img src="{{ '/assets/img/publication_preview/dpseg.png' | relative_url }}" alt="DPSeg teaser" class="thumb"
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/dpseg.jpg' | relative_url }}" target="_blank" rel="noopener"
+            ><img src="{{ '/assets/img/publication_preview/dpseg-thumb.jpg' | relative_url }}" loading="lazy" alt="DPSeg teaser" class="thumb"
           /></a>
           <div>
             <div class="venue">Neurocomputing · 2026</div>
