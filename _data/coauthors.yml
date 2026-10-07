@@ -1,7 +1,0 @@
-# Coauthors listed here get their names linked in the rendered bibliography.
-# Keys MUST be lower cased and MUST NOT contain accents — they are matched
-# against the last names in your BibTeX entries.
-#
-# "hong":
-#   - firstname: ["Gildong", "G.", "G. D."]
-#     url: https://example.com/gildong-hong
