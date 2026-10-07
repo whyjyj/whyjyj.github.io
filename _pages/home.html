@@ -549,39 +549,6 @@ description: >-
         <h2><span class="num">04</span><span>publications</span><span class="rule"></span></h2>
 
         <article class="pub">
-          <a class="thumb-link" href="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" target="_blank" rel="noopener"
-            ><img src="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" alt="Action errors around subskill transitions" class="thumb"
-          /></a>
-          <div>
-            <div class="venue">Under Review · 2026</div>
-            <h3>When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models</h3>
-            <p class="authors">
-              Seonghoon Yu, Dongwon Kim, HyungRok Jung, <span class="me">Yoonjae Baek</span>, Byung-kwan Lee, Suha Kwak, Jeany Son
-            </p>
-            <div class="actions">
-              <a href="https://arxiv.org/abs/2610.05719" target="_blank" rel="noopener">arXiv</a>
-              <a href="https://arxiv.org/pdf/2610.05719" target="_blank" rel="noopener">pdf</a>
-              <a href="https://github.com/Seonghoon-Yu/RACE-VLA" target="_blank" rel="noopener">code</a>
-              <button type="button" data-abstract>abstract</button>
-            </div>
-          </div>
-          <p class="abstract">
-            Vision-Language-Action (VLA) models serve as unified policies for robotic manipulation, yet their expensive inference forces robots to
-            pause between policy calls, resulting in stop-and-go execution that interrupts smooth motion and prolongs task completion. Extending the
-            action chunk reduces policy calls and hence these pauses, but predicting farther into the future makes long-chunk execution unreliable. To
-            understand where this unreliability arises, we analyze action errors within long chunks and find that they concentrate around transitions
-            between manipulation subskills, growing sharply with chunk length. This suggests the importance of transition timing, i.e., when to switch
-            subskills within a chunk. Motivated by this observation, we introduce RACE (Reliable Action-Chunk Extension), a framework that predicts
-            the transition timing from an auxiliary one-step denoising pass and conditions action generation on it. By learning and conditioning on
-            transition timing, RACE reduces errors at subskill transitions and enables reliable execution of longer action chunks. Across simulation
-            benchmarks, RACE outperforms fine-tuning at the same chunk length; with 2x longer chunks, it surpasses recent state-of-the-art and
-            efficient VLAs in success rate, and with 4x longer chunks, it remains competitive. On a real robot, RACE uses 4x longer chunks, which
-            reduces the idle time caused by stop-and-go execution by about 5x, while achieving a higher success rate than fine-tuning with the same
-            chunk length.
-          </p>
-        </article>
-
-        <article class="pub">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}" target="_blank" rel="noopener"
             ><img
               src="{{ '/assets/img/publication_preview/robostress.png' | relative_url }}"
@@ -613,6 +580,38 @@ description: >-
             RoboStress, self-compensating VLA achieves higher average task success than both the base policies and methods that build in robustness
             during training. On two physical robot arms with different usage histories, it raises the average task success rate by more than 30
             percentage points on each arm, and the gains extend to objects not seen in the task demonstrations.
+          </p>
+        </article>
+
+        <article class="pub">
+          <a class="thumb-link" href="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" target="_blank" rel="noopener"
+            ><img src="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" alt="Action errors around subskill transitions" class="thumb"
+          /></a>
+          <div>
+            <div class="venue">Under Review · 2026</div>
+            <h3>When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models</h3>
+            <p class="authors">
+              Seonghoon Yu, Dongwon Kim, HyungRok Jung, <span class="me">Yoonjae Baek</span>, Byung-kwan Lee, Suha Kwak, Jeany Son
+            </p>
+            <div class="actions">
+              <a href="https://arxiv.org/abs/2610.05719" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2610.05719" target="_blank" rel="noopener">pdf</a>
+              <button type="button" data-abstract>abstract</button>
+            </div>
+          </div>
+          <p class="abstract">
+            Vision-Language-Action (VLA) models serve as unified policies for robotic manipulation, yet their expensive inference forces robots to
+            pause between policy calls, resulting in stop-and-go execution that interrupts smooth motion and prolongs task completion. Extending the
+            action chunk reduces policy calls and hence these pauses, but predicting farther into the future makes long-chunk execution unreliable. To
+            understand where this unreliability arises, we analyze action errors within long chunks and find that they concentrate around transitions
+            between manipulation subskills, growing sharply with chunk length. This suggests the importance of transition timing, i.e., when to switch
+            subskills within a chunk. Motivated by this observation, we introduce RACE (Reliable Action-Chunk Extension), a framework that predicts
+            the transition timing from an auxiliary one-step denoising pass and conditions action generation on it. By learning and conditioning on
+            transition timing, RACE reduces errors at subskill transitions and enables reliable execution of longer action chunks. Across simulation
+            benchmarks, RACE outperforms fine-tuning at the same chunk length; with 2x longer chunks, it surpasses recent state-of-the-art and
+            efficient VLAs in success rate, and with 4x longer chunks, it remains competitive. On a real robot, RACE uses 4x longer chunks, which
+            reduces the idle time caused by stop-and-go execution by about 5x, while achieving a higher success rate than fine-tuning with the same
+            chunk length.
           </p>
         </article>
 
