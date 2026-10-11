@@ -26,13 +26,18 @@ sections = cv["sections"]
 # The section title already says "Interests", so the PDF keeps only the keywords.
 sections["Interests"] = [e["keywords"] for e in sections.get("Interests", [])]
 publications = sections["Publications"]
-# Honors and services read as one full-width line ("**Name**, detail, year"), with any summary below.
-for title in ("Honors and Awards", "Services"):
-    sections[title] = [
-        f"**{e['name']}**, {e['detail']}, {str(e['date'])[:4]}"
-        + (f"#linebreak(){e['summary']}" if e.get("summary") else "")
-        for e in sections.get(title, [])
-    ]
+
+
+def years(e):
+    if "date" in e:
+        return str(e["date"])[:4]
+    start, end = str(e["start_date"])[:4], str(e["end_date"])[:4]
+    return start if start == end else f"{start}–{end}"
+
+
+# Honors, services and leadership read as one full-width line: "**Name**, detail, year".
+for title in ("Honors and Awards", "Services", "Leadership"):
+    sections[title] = [f"**{e['name']}**, {e['detail']}, {years(e)}" for e in sections.get(title, [])]
 sections["Publications"] = [PLACEHOLDER]
 
 
