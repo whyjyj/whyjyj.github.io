@@ -4,13 +4,13 @@ cv:
   email: yoonjae.baek@postech.ac.kr
   location: Pohang, South Korea
   image: ""
-  summary: M.S. student in the Graduate School of Artificial Intelligence at POSTECH, working in the Computer Vision Lab under Prof. Suha Kwak on video understanding and embodied AI.
+  summary: M.S. student in the Graduate School of Artificial Intelligence at POSTECH, working in the Computer Vision Lab under Prof. Suha Kwak on Embodied AI, Vision-Language-Action models, and video understanding.
 
   social_networks:
     - network: GitHub
       username: whyjyj
-    # - network: LinkedIn
-    #   username: your-linkedin-handle
+    - network: Google Scholar
+      username: bRxRkzQAAAAJ
 
   address:
     street: 77 Cheongam-ro, Nam-gu
@@ -26,50 +26,106 @@ cv:
         url: https://www.postech.ac.kr/eng/
         area: Artificial Intelligence
         studyType: M.S.
-        start_date: TODO
-        end_date: TODO
-        score: ""
-        courses: ""
+        degree: M.S.
+        start_date: 2025-02
+        end_date: present
         highlights:
-          - Computer Vision Lab, advised by Prof. Suha Kwak.
-          - Research on video understanding and embodied AI.
+          - Graduate School of Artificial Intelligence, Computer Vision Lab
+          - "Advisor: Prof. Suha Kwak"
 
-      - institution: TODO — your undergraduate university
-        location: TODO
-        area: TODO — your major
+      - institution: Sungkyunkwan University (SKKU)
+        location: Seoul, South Korea
+        url: https://www.skku.edu/
+        area: Computer Education
         studyType: B.S.
-        start_date: TODO
-        end_date: TODO
+        degree: B.S.
+        start_date: 2018-03
+        end_date: 2025-02
+        highlights:
+          - "Advisor: Prof. Sungeun Hong"
+
+    Publications:
+      - title: "Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing"
+        authors:
+          - 'Sohyun Lee\*'
+          - '**Yoonjae Baek**\*'
+          - Jaesang Won
+          - Jinnyeong Kim
+          - Hyunwoo Kang
+          - Seung-Hwan Baek
+          - Ivan Laptev
+          - Suha Kwak
+        journal: Under Review, \*equal contribution
+        date: 2026
+
+      - title: "When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models"
+        authors:
+          - Seonghoon Yu
+          - Dongwon Kim
+          - HyungRok Jung
+          - "**Yoonjae Baek**"
+          - Byung-kwan Lee
+          - Suha Kwak
+          - Jeany Son
+        journal: Under Review
+        date: 2026
+
+      - title: "EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization"
+        authors:
+          - Youngkil Song
+          - "**Yoonjae Baek**"
+          - Dongwon Kim
+          - Inho Kim
+          - Dongkeun Kim
+          - Suha Kwak
+        journal: arXiv preprint arXiv:2607.04872
+        date: 2026
+
+      - title: Dual Path Semantic Segmentation with Locality Guidance Tokens
+        authors:
+          - Jaeik Kim
+          - "**Yoonjae Baek**"
+          - Aecheon Jung
+          - Hongyeob Kim
+          - Soyun Choi
+          - Youngeun Kim
+          - Jaeyoung Do
+          - Sungeun Hong
+        journal: Neurocomputing
+        date: 2026
 
     Experience:
-      - company: TODO — organization
-        position: TODO — your role
-        location: TODO
-        start_date: TODO
-        end_date: TODO
-        summary: TODO — what you did.
+      - company: Computer Vision Lab, POSTECH
+        position: Research and Teaching Assistant
+        location: Pohang, South Korea
+        start_date: 2025-02
+        end_date: present
+
+      - company: AI & Media (AIM) Lab, Sungkyunkwan University
+        position: Undergraduate Research Intern
+        location: Seoul, South Korea
+        start_date: 2024-01
+        end_date: 2024-06
         highlights:
-          - TODO
+          - "Advisor: Prof. Sungeun Hong"
 
-    Skills:
-      - name: Research
-        level: ""
-        icon: fa-solid fa-hashtag
-        keywords: "Computer Vision, Deep Learning, Video Understanding, Embodied AI"
+      - company: Dept. of Computer Education Student Council, SKKU
+        position: President
+        location: Seoul, South Korea
+        start_date: 2019-11
+        end_date: 2020-11
 
-      - name: TODO — tools and languages
-        level: ""
-        icon: fa-solid fa-code
-        keywords: "TODO, e.g. Python, PyTorch"
+    Honors and Awards:
+      - name: Gold Prize
+        summary: 38th Workshop of Image Processing and Image Understanding (IPIU), Jeju, South Korea
+        date: 2026-02
 
-    Languages:
-      - name: Korean
-        summary: "Native speaker"
-
-      - name: English
-        summary: "TODO — your level"
+    Services:
+      - name: Student Volunteer
+        summary: Conference on Robot Learning (CoRL)
+        date: 2025
 
     Interests:
-      - name: Computer Vision
+      - name: Research Interests
         icon: fa-solid fa-tag
-        keywords: "Video Understanding, Embodied AI, Deep Learning"
+        keywords: "Embodied AI, Vision-Language-Action Models, Real-World Deployment, Video Understanding"
