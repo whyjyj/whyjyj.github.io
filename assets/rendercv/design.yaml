@@ -1,18 +1,53 @@
 # for more options, see https://docs.rendercv.com/user_guide/yaml_input_structure/design/
+# Laid out after a LaTeX academic CV: serif type, small-caps section titles, two-row education and
+# experience entries. Publications are typeset as a numbered list by the CV build script instead.
 design:
-  theme: classic
+  theme: sb2nov
   page:
     size: a4
-    left_margin: 1.3cm
-    right_margin: 1.3cm
+    top_margin: 1.4cm
+    bottom_margin: 1.4cm
+    left_margin: 1.5cm
+    right_margin: 1.5cm
     show_footer: false
     show_top_note: false
+  colors:
+    links: rgb(31, 104, 179)
+    connections: rgb(31, 104, 179)
   typography:
-    alignment: justified-with-no-hyphenation
+    alignment: left
+    font_size:
+      name: 26pt
+      section_titles: 1.2em
+    small_caps:
+      section_titles: true
+    bold:
+      section_titles: false
+  links:
+    underline: false
+  header:
+    space_below_name: 0.35cm
+    space_below_connections: 0.4cm
+    connections:
+      show_icons: true
+      separator: "|"
+      space_between_connections: 0.25cm
+  section_titles:
+    space_above: 0.45cm
+    space_below: 0.25cm
   sections:
     show_time_spans_in: []
   entries:
-    date_and_location_width: 3.2cm
+    date_and_location_width: 4.2cm
+    side_space: 0.35cm
+    highlights:
+      bullet: "•"
+      nested_bullet: "•"
   templates:
-    publication_entry:
-      main_column: "**TITLE**\nAUTHORS\n*JOURNAL*"
+    education_entry:
+      main_column: "**INSTITUTION**\n*DEGREE in AREA*\nHIGHLIGHTS"
+      degree_column: null
+      date_and_location_column: "LOCATION\n*DATE*"
+    experience_entry:
+      main_column: "**COMPANY**\n*POSITION*\nSUMMARY\nHIGHLIGHTS"
+      date_and_location_column: "LOCATION\n*DATE*"
