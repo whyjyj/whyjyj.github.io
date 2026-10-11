@@ -55,7 +55,8 @@ cv:
           - Seung-Hwan Baek
           - Ivan Laptev
           - Suha Kwak
-        journal: Under Review, \*equal contribution
+        journal: Under Review
+        summary: \*equal contribution
         date: 2026
 
       - title: "When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models"
@@ -78,7 +79,7 @@ cv:
           - Inho Kim
           - Dongkeun Kim
           - Suha Kwak
-        journal: arXiv preprint arXiv:2607.04872
+        journal: Under Review
         date: 2026
 
       - title: Dual Path Semantic Segmentation with Locality Guidance Tokens
@@ -117,12 +118,13 @@ cv:
 
     Honors and Awards:
       - name: Gold Prize
-        summary: 38th Workshop of Image Processing and Image Understanding (IPIU), Jeju, South Korea
+        detail: 38th Workshop of Image Processing and Image Understanding (IPIU)
+        summary: Jeju, South Korea
         date: 2026-02
 
     Services:
       - name: Student Volunteer
-        summary: Conference on Robot Learning (CoRL)
+        detail: Conference on Robot Learning (CoRL)
         date: 2025
 
     Interests:
