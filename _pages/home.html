@@ -5,8 +5,6 @@ title: Yoonjae Baek
 # News bodies render as <p>…</p>; the tags live here because Prettier rewrites "<p>" strings inside the HTML body.
 p_open: "<p>"
 p_close: "</p>"
-# Shown under the cv link; bump it whenever assets/rendercv/rendercv_output/Yoonjae_Baek_CV.pdf is regenerated.
-cv_updated: 2026-10-11
 description: >-
   Yoonjae Baek (백윤재) — M.S. student at POSTECH GSAI in the Computer Vision Lab, working on Embodied AI,
   Vision-Language-Action models, and video understanding.
@@ -250,19 +248,6 @@ description: >-
         border-color: var(--accent);
         color: var(--accent);
         text-decoration: none;
-      }
-      /* The date hangs below the cv pill out of flow, so the pills stay on one even row. */
-      .links .cv {
-        position: relative;
-      }
-      .links .updated {
-        position: absolute;
-        top: calc(100% + 3px);
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.68rem;
-        color: var(--muted);
-        white-space: nowrap;
       }
 
       /* ---------- sections ---------- */
@@ -523,10 +508,7 @@ description: >-
               <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" target="_blank" rel="noopener">scholar</a>
             </li>
             <li><a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener">github</a></li>
-            <li class="cv">
-              <a href="{{ '/assets/rendercv/rendercv_output/Yoonjae_Baek_CV.pdf' | relative_url }}" target="_blank" rel="noopener">cv</a>
-              <span class="updated">updated {{ page.cv_updated | date: "%b %-d, %Y" }}</span>
-            </li>
+            <li><a href="{{ '/assets/rendercv/rendercv_output/Yoonjae_Baek_CV.pdf' | relative_url }}" target="_blank" rel="noopener">cv</a></li>
           </ul>
         </div>
       </header>
