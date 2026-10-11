@@ -3,5 +3,16 @@ design:
   theme: classic
   page:
     size: a4
+    left_margin: 1.3cm
+    right_margin: 1.3cm
     show_footer: false
     show_top_note: false
+  typography:
+    alignment: justified-with-no-hyphenation
+  sections:
+    show_time_spans_in: []
+  entries:
+    date_and_location_width: 3.2cm
+  templates:
+    publication_entry:
+      main_column: "**TITLE**\nAUTHORS\n*JOURNAL*"
