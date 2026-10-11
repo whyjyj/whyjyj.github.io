@@ -111,22 +111,22 @@ cv:
         highlights:
           - "Advisor: Prof. Sungeun Hong"
 
-      - company: Dept. of Computer Education Student Council, SKKU
-        position: President
-        location: Seoul, South Korea
-        start_date: 2019-11
-        end_date: 2020-11
-
     Honors and Awards:
       - name: Gold Prize
         detail: 38th Workshop of Image Processing and Image Understanding (IPIU)
-        summary: Jeju, South Korea
         date: 2026-02
 
     Services:
       - name: Student Volunteer
         detail: Conference on Robot Learning (CoRL)
         date: 2025
+
+    Leadership:
+      - name: President
+        detail: Student Council of the Department of Computer Education, Sungkyunkwan University
+        location: Seoul, South Korea
+        start_date: 2019-11
+        end_date: 2020-11
 
     Interests:
       - name: Research Interests
