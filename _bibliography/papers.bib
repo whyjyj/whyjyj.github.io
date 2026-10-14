@@ -39,13 +39,15 @@
   preview     = {eventcot.jpg}
 }
 
-% TODO: confirm the year, and add doi/pdf/code/website once the Neurocomputing version is online.
 @article{kim2026dual,
   abbr        = {Neurocomputing},
   title       = {Dual Path Semantic Segmentation with Locality Guidance Tokens},
   author      = {Kim, Jaeik and Baek, Yoonjae and Jung, Aecheon and Kim, Hongyeob and Choi, Soyun and Kim, Youngeun and Do, Jaeyoung and Hong, Sungeun},
   journal     = {Neurocomputing},
+  volume      = {709},
+  pages       = {135268},
   year        = {2026},
+  doi         = {10.1016/j.neucom.2026.135268},
   abstract    = {Learnable tokens have shown effectiveness in semantic segmentation by capturing local information, yet most methods rely on late fusion at the decoder, losing fine-grained locality. Our theoretical and empirical analyses reveal that the timing and strategy of token integration significantly influence feature alignment and segmentation accuracy. We propose Dual Path Segmentation (DPSeg), a lightweight and model-agnostic framework that preserves locality throughout encoding and decoding. Our proposed Locality Guidance (LG) tokens play two roles: (i) guiding adjacent patches during encoding to enhance object-consistent attention and fine-grained representations, and (ii) serving as mask proposals in decoding to refine structural consistency. Our path mixing decoder integrates local details with global context without extra data or architectural changes. DPSeg consistently improves performance across various baselines and achieves promising results on various datasets.},
   selected    = {true},
   preview     = {dpseg.jpg}
