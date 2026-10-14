@@ -382,14 +382,25 @@ description: >-
         font: inherit;
         cursor: pointer;
       }
-      .pub .abstract {
+      .pub .abstract,
+      .pub .bibtex {
         display: none;
         grid-column: 1 / -1;
         margin: 0;
         font-size: 0.9rem;
         color: var(--muted);
       }
-      .pub.open .abstract {
+      /* One click selects the whole entry for copying. */
+      .pub .bibtex {
+        padding: 12px 14px;
+        overflow-x: auto;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        font: 0.78rem/1.55 var(--mono);
+        user-select: all;
+      }
+      .pub[data-open="abstract"] .abstract,
+      .pub[data-open="bibtex"] .bibtex {
         display: block;
       }
 
@@ -575,7 +586,8 @@ description: >-
               <a href="https://arxiv.org/abs/2609.37334" target="_blank" rel="noopener">arXiv</a>
               <a href="https://arxiv.org/pdf/2609.37334" target="_blank" rel="noopener">pdf</a>
               <a href="https://sohyun-l.github.io/SelfCompensatingVLA_project_page/" target="_blank" rel="noopener">website</a>
-              <button type="button" data-abstract>abstract</button>
+              <button type="button" data-panel="abstract">abstract</button>
+              <button type="button" data-panel="bibtex">bibtex</button>
             </div>
           </div>
           <p class="abstract">
@@ -590,6 +602,14 @@ description: >-
             during training. On two physical robot arms with different usage histories, it raises the average task success rate by more than 30
             percentage points on each arm, and the gains extend to objects not seen in the task demonstrations.
           </p>
+          <pre class="bibtex">
+@article{lee2026taming,
+  title   = {Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing},
+  author  = {Lee, Sohyun and Baek, Yoonjae and Won, Jaesang and Kim, Jinnyeong and Kang, Hyunwoo and Baek, Seung-Hwan and Laptev, Ivan and Kwak, Suha},
+  journal = {arXiv preprint arXiv:2609.37334},
+  year    = {2026}
+}</pre
+          >
         </article>
 
         <article class="pub">
@@ -609,7 +629,8 @@ description: >-
             <div class="actions">
               <a href="https://arxiv.org/abs/2610.05719" target="_blank" rel="noopener">arXiv</a>
               <a href="https://arxiv.org/pdf/2610.05719" target="_blank" rel="noopener">pdf</a>
-              <button type="button" data-abstract>abstract</button>
+              <button type="button" data-panel="abstract">abstract</button>
+              <button type="button" data-panel="bibtex">bibtex</button>
             </div>
           </div>
           <p class="abstract">
@@ -626,6 +647,14 @@ description: >-
             reduces the idle time caused by stop-and-go execution by about 5x, while achieving a higher success rate than fine-tuning with the same
             chunk length.
           </p>
+          <pre class="bibtex">
+@article{yu2026race,
+  title   = {When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models},
+  author  = {Yu, Seonghoon and Kim, Dongwon and Jung, HyungRok and Baek, Yoonjae and Lee, Byung-kwan and Kwak, Suha and Son, Jeany},
+  journal = {arXiv preprint arXiv:2610.05719},
+  year    = {2026}
+}</pre
+          >
         </article>
 
         <article class="pub">
@@ -639,7 +668,8 @@ description: >-
             <div class="actions">
               <a href="https://arxiv.org/abs/2607.04872" target="_blank" rel="noopener">arXiv</a>
               <a href="https://arxiv.org/pdf/2607.04872" target="_blank" rel="noopener">pdf</a>
-              <button type="button" data-abstract>abstract</button>
+              <button type="button" data-panel="abstract">abstract</button>
+              <button type="button" data-panel="bibtex">bibtex</button>
             </div>
           </div>
           <p class="abstract">
@@ -652,6 +682,14 @@ description: >-
             substantially fewer visual tokens than previous work. To verify its general performance, we further evaluate EventCoT on the grounded
             video question answering benchmark ReXTime, where it attains strong zero-shot results.
           </p>
+          <pre class="bibtex">
+@article{song2026eventcot,
+  title   = {EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization},
+  author  = {Song, Youngkil and Baek, Yoonjae and Kim, Dongwon and Kim, Inho and Kim, Dongkeun and Kwak, Suha},
+  journal = {arXiv preprint arXiv:2607.04872},
+  year    = {2026}
+}</pre
+          >
         </article>
 
         <article class="pub">
@@ -664,7 +702,10 @@ description: >-
             <p class="authors">
               Jaeik Kim, <span class="me">Yoonjae Baek</span>, Aecheon Jung, Hongyeob Kim, Soyun Choi, Youngeun Kim, Jaeyoung Do, Sungeun Hong
             </p>
-            <div class="actions"><button type="button" data-abstract>abstract</button></div>
+            <div class="actions">
+              <button type="button" data-panel="abstract">abstract</button>
+              <button type="button" data-panel="bibtex">bibtex</button>
+            </div>
           </div>
           <p class="abstract">
             Learnable tokens have shown effectiveness in semantic segmentation by capturing local information, yet most methods rely on late fusion at
@@ -676,6 +717,17 @@ description: >-
             context without extra data or architectural changes. DPSeg consistently improves performance across various baselines and achieves
             promising results on various datasets.
           </p>
+          <pre class="bibtex">
+@article{kim2026dual,
+  title   = {Dual Path Semantic Segmentation with Locality Guidance Tokens},
+  author  = {Kim, Jaeik and Baek, Yoonjae and Jung, Aecheon and Kim, Hongyeob and Choi, Soyun and Kim, Youngeun and Do, Jaeyoung and Hong, Sungeun},
+  journal = {Neurocomputing},
+  volume  = {709},
+  pages   = {135268},
+  year    = {2026},
+  doi     = {10.1016/j.neucom.2026.135268}
+}</pre
+          >
         </article>
       </section>
 
@@ -765,9 +817,11 @@ description: >-
         var email = document.getElementById("emailLink");
         email.href = "mailto:" + email.dataset.user + "@" + email.dataset.host;
 
-        document.querySelectorAll("[data-abstract]").forEach(function (btn) {
+        // Abstract and BibTeX share the space under a paper, so opening one closes the other.
+        document.querySelectorAll("[data-panel]").forEach(function (btn) {
           btn.addEventListener("click", function () {
-            btn.closest(".pub").classList.toggle("open");
+            var pub = btn.closest(".pub");
+            pub.dataset.open = pub.dataset.open === btn.dataset.panel ? "" : btn.dataset.panel;
           });
         });
       })();
