@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-📄 Our paper on semantic segmentation, DPSeg, is now published in [Neurocomputing](https://doi.org/10.1016/j.neucom.2026.135268).
+**DPSeg**, on semantic segmentation with locality guidance tokens, is published in **Neurocomputing**. \[[paper](https://doi.org/10.1016/j.neucom.2026.135268)\]
