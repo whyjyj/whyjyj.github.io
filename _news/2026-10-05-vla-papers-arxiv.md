@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🦾 Two new VLA papers are now on arXiv: [Self-Compensating VLA](https://arxiv.org/abs/2609.37334), which adapts online to robot execution errors and comes with the RoboStress benchmark, and [RACE](https://arxiv.org/abs/2610.05719), which makes longer action chunks reliable by predicting when to switch subskills.
+Two VLA preprints are now on arXiv: **Self-Compensating VLA**, which adapts online to robot execution errors and comes with the RoboStress benchmark \[[arXiv](https://arxiv.org/abs/2609.37334)\] \[[project](https://sohyun-l.github.io/SelfCompensatingVLA_project_page/)\], and **RACE**, which makes longer action chunks reliable by predicting when to switch subskills \[[arXiv](https://arxiv.org/abs/2610.05719)\].

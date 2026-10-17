@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🏆 Our paper EventCoT received the Gold Prize (top 3 of 368 papers) at the 38th Workshop of Image Processing and Image Understanding (IPIU 2026), Jeju, South Korea.
+Received the _Gold Prize_ (top 3 of 368 papers) for **EventCoT** at **IPIU 2026**, the 38th Workshop of Image Processing and Image Understanding (Jeju, South Korea).
