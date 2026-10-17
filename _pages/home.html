@@ -355,6 +355,29 @@ description: >-
         text-transform: uppercase;
         vertical-align: 1px;
       }
+      /* News links jump to the paper card or honor row below; the target flashes so it is easy
+         to spot after the scroll. */
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+        .pub:target,
+        .rows li:target {
+          animation: landed 1.8s ease-out;
+        }
+      }
+      .pub,
+      .rows li {
+        scroll-margin-top: 24px;
+      }
+      .pub:target {
+        border-color: var(--accent);
+      }
+      @keyframes landed {
+        from {
+          background-color: var(--accent-soft);
+        }
+      }
       /* Keeps "Prof. Name" on one line so a narrow screen never splits the title from the name. */
       .nb {
         white-space: nowrap;
@@ -635,7 +658,7 @@ description: >-
       <section class="section">
         <h2><span class="num">04</span><span>Publications</span><span class="rule"></span></h2>
 
-        <article class="pub">
+        <article class="pub" id="pub-self-compensating-vla">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img
               src="{{ '/assets/img/publication_preview/robostress-thumb.jpg' | relative_url }}"
@@ -680,7 +703,7 @@ description: >-
           </pre>
         </article>
 
-        <article class="pub">
+        <article class="pub" id="pub-race">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/race.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img
               src="{{ '/assets/img/publication_preview/race-thumb.jpg' | relative_url }}"
@@ -725,7 +748,7 @@ description: >-
           </pre>
         </article>
 
-        <article class="pub">
+        <article class="pub" id="pub-eventcot">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/eventcot.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img src="{{ '/assets/img/publication_preview/eventcot-thumb.jpg' | relative_url }}" loading="lazy" alt="EventCoT teaser" class="thumb"
           /></a>
@@ -760,7 +783,7 @@ description: >-
           </pre>
         </article>
 
-        <article class="pub">
+        <article class="pub" id="pub-dpseg">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/dpseg.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img src="{{ '/assets/img/publication_preview/dpseg-thumb.jpg' | relative_url }}" loading="lazy" alt="DPSeg teaser" class="thumb"
           /></a>
@@ -862,7 +885,7 @@ description: >-
       <section class="section">
         <h2><span class="num">08</span><span>Honors</span><span class="rule"></span></h2>
         <ul class="rows">
-          <li>
+          <li id="honor-ipiu-2026">
             <span class="ts">Feb 2026</span>
             <span
               ><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding (IPIU)

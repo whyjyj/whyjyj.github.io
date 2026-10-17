@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Received the _Gold Prize_ (top 3 of 368 papers) for **EventCoT** at **IPIU 2026**, the 38th Workshop of Image Processing and Image Understanding (Jeju, South Korea).
+Received the _[Gold Prize](#honor-ipiu-2026)_ (top 3 of 368 papers) for **[EventCoT](#pub-eventcot)** at **IPIU 2026** (Jeju, South Korea).

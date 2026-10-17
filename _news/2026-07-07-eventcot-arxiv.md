@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Preprint on **EventCoT** for reasoning temporal localization in videos is now on arXiv. \[[arXiv](https://arxiv.org/abs/2607.04872)\]
+Preprint on **[EventCoT](#pub-eventcot)** for reasoning temporal localization in videos is now on arXiv.
