@@ -59,7 +59,7 @@ description: >-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     />
 
     <!-- Resolve the theme before first paint so the page never flashes the wrong colours. -->
@@ -98,8 +98,8 @@ description: >-
         --line: #e6e4de;
         --accent: #2f6fdf;
         --accent-soft: rgba(47, 111, 223, 0.1);
-        --shadow: rgba(0, 0, 0, 0.28);
-        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        --card: #f3f1eb;
+        --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
       }
       :root[data-theme="dark"] {
@@ -110,20 +110,23 @@ description: >-
         --line: #262a33;
         --accent: #7aa7ff;
         --accent-soft: rgba(122, 167, 255, 0.12);
-        --shadow: rgba(0, 0, 0, 0.7);
+        --card: #161920;
       }
 
       * {
         box-sizing: border-box;
       }
+      /* Every rem size scales off this: 15px instead of the default 16px, kept as a percentage so
+         a reader's own browser font size still applies. */
       html {
+        font-size: 93.75%;
         background: var(--bg);
       }
       body {
         margin: 0;
         background: var(--bg);
         color: var(--text);
-        font: 15.5px/1.65 var(--sans);
+        font: 13px/1.7 var(--mono);
         -webkit-font-smoothing: antialiased;
         transition:
           background 0.2s,
@@ -203,6 +206,7 @@ description: >-
       }
       .name .hangul {
         margin-left: 12px;
+        font-family: var(--sans);
         font-size: 1.1rem;
         font-weight: 500;
         color: var(--muted);
@@ -260,8 +264,9 @@ description: >-
         align-items: center;
         gap: 10px;
         margin: 0 0 20px;
-        font: 600 0.95rem var(--mono);
-        text-transform: lowercase;
+        font: 600 0.9rem var(--mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
       .section h2 .num {
         color: var(--accent);
@@ -312,40 +317,91 @@ description: >-
         color: var(--muted);
         font-size: 0.92rem;
       }
+      /* News: compact rows that light up on hover, in the style of leesangoh.github.io. The
+         list bleeds 10px past the column so the text stays aligned with the other sections. */
+      .news {
+        margin: 0 -10px;
+        padding: 0;
+        list-style: none;
+        font-size: 0.86rem;
+      }
+      .news li {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 18px;
+        align-items: baseline;
+        padding: 6px 10px;
+        border-radius: 3px;
+      }
+      .news li:hover {
+        background: var(--card);
+      }
+      .news .ts {
+        color: var(--muted);
+      }
+      .news strong {
+        font-weight: 600;
+      }
+      .news .new {
+        display: inline-block;
+        margin-right: 8px;
+        padding: 1px 6px;
+        border-radius: 2px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        vertical-align: 1px;
+      }
       /* Keeps "Prof. Name" on one line so a narrow screen never splits the title from the name. */
       .nb {
         white-space: nowrap;
       }
 
       /* ---------- publications ---------- */
-      /* List rows with a framed teaser on the left, in the style of yehogwon.github.io: the
-         teasers are wide (2.5–3.3 : 1), so each keeps its own ratio at about a third of the
-         width instead of being boxed into a fixed thumbnail shape. */
+      /* Each paper is a card, in the style of leesangoh.github.io, with the teaser on the left.
+         The teasers are wide (2.5–3.3 : 1), so each keeps its own ratio at about a third of the
+         card instead of being boxed into a fixed thumbnail shape. */
       .pub {
         display: grid;
         grid-template-columns: minmax(0, 36%) 1fr;
-        gap: 12px 24px;
+        gap: 12px 22px;
         align-items: start;
-        margin-bottom: 30px;
+        margin-bottom: 14px;
+        padding: 16px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
       }
+      .pub:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+      /* The figures are drawn on white, so they keep a white backing in dark mode too. */
       .pub .thumb-link {
         display: block;
-        padding: 6px;
+        overflow: hidden;
         background: #fff;
-        border: 1px solid var(--line);
-        box-shadow: 0 6px 16px -8px var(--shadow);
-        transition:
-          transform 0.15s,
-          box-shadow 0.15s;
-      }
-      .pub .thumb-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 22px -8px var(--shadow);
+        border-radius: 2px;
       }
       .pub .thumb {
         display: block;
         width: 100%;
         height: auto;
+        opacity: 0.9;
+        filter: grayscale(0.15);
+        transition:
+          filter 0.15s,
+          opacity 0.15s;
+      }
+      .pub:hover .thumb {
+        opacity: 1;
+        filter: none;
       }
       .pub .venue {
         font: 600 0.78rem var(--mono);
@@ -355,11 +411,11 @@ description: >-
       }
       .pub h3 {
         margin: 4px 0 6px;
-        font-size: 1.02rem;
-        line-height: 1.4;
+        font: 600 1.02rem/1.4 var(--sans);
       }
       .pub .authors {
         margin: 0 0 10px;
+        font-family: var(--sans);
         font-size: 0.9rem;
         color: var(--muted);
       }
@@ -388,6 +444,7 @@ description: >-
         display: none;
         grid-column: 1 / -1;
         margin: 0;
+        font-family: var(--sans);
         font-size: 0.9rem;
         color: var(--muted);
       }
@@ -396,7 +453,7 @@ description: >-
       .pub .bibtex {
         padding: 12px 14px 0;
         overflow-x: auto;
-        background: var(--surface);
+        background: var(--bg);
         border: 1px solid var(--line);
         font: 0.78rem/1.55 var(--mono);
         user-select: all;
@@ -471,6 +528,10 @@ description: >-
           grid-template-columns: 1fr;
           gap: 0;
         }
+        .news li {
+          grid-template-columns: 70px 1fr;
+          gap: 12px;
+        }
         .pub {
           grid-template-columns: 1fr;
         }
@@ -530,7 +591,7 @@ description: >-
       </header>
 
       <section class="section">
-        <h2><span class="num">01</span><span>about</span><span class="rule"></span></h2>
+        <h2><span class="num">01</span><span>About</span><span class="rule"></span></h2>
         <p>
           I'm a Master's student in the
           <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">Graduate School of Artificial Intelligence</a> at
@@ -546,7 +607,7 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">02</span><span>interests</span><span class="rule"></span></h2>
+        <h2><span class="num">02</span><span>Interests</span><span class="rule"></span></h2>
         <div class="tags">
           <span>Embodied AI</span>
           <span>Vision-Language-Action Models</span>
@@ -556,21 +617,23 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">03</span><span>news</span><span class="rule"></span></h2>
-        <!-- Rendered from _news/, newest first. Add a file there to add an entry. -->
-        <ul class="rows">
-          {%- assign news = site.news | sort: "date" | reverse %} {%- for item in news %} {%- assign msg = item.content | strip | remove: page.p_open
-          | remove: page.p_close %}
+        <h2><span class="num">03</span><span>News</span><span class="rule"></span></h2>
+        <!-- Rendered from _news/, newest first. Add a file there to add an entry. The newest entry
+             is badged "new" while it is under 60 days old at build time. -->
+        <ul class="news">
+          {%- assign news = site.news | sort: "date" | reverse %} {%- assign now_s = site.time | date: "%s" | plus: 0 %} {%- for item in news %} {%-
+          assign msg = item.content | strip | remove: page.p_open | remove: page.p_close %} {%- assign item_s = item.date | date: "%s" | plus: 0 %}
+          {%- assign age_days = now_s | minus: item_s | divided_by: 86400 %}
           <li>
             <span class="ts">{{ item.date | date: "%b %Y" }}</span>
-            <span>{{ msg }}</span>
+            <span>{% if forloop.first and age_days < 60 %}<span class="new">New</span>{% endif %}{{ msg }}</span>
           </li>
           {%- endfor %}
         </ul>
       </section>
 
       <section class="section">
-        <h2><span class="num">04</span><span>publications</span><span class="rule"></span></h2>
+        <h2><span class="num">04</span><span>Publications</span><span class="rule"></span></h2>
 
         <article class="pub">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/robostress.jpg' | relative_url }}" target="_blank" rel="noopener"
@@ -738,7 +801,7 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">05</span><span>experience</span><span class="rule"></span></h2>
+        <h2><span class="num">05</span><span>Experience</span><span class="rule"></span></h2>
         <ul class="rows">
           <li>
             <span class="ts">Feb 2025 – Present</span>
@@ -766,7 +829,7 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">06</span><span>education</span><span class="rule"></span></h2>
+        <h2><span class="num">06</span><span>Education</span><span class="rule"></span></h2>
         <ul class="rows">
           <li>
             <span class="ts">Feb 2025 – Present</span>
@@ -787,7 +850,7 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">07</span><span>services</span><span class="rule"></span></h2>
+        <h2><span class="num">07</span><span>Services</span><span class="rule"></span></h2>
         <ul class="rows">
           <li>
             <span class="ts">2025</span>
@@ -797,7 +860,7 @@ description: >-
       </section>
 
       <section class="section">
-        <h2><span class="num">08</span><span>honors</span><span class="rule"></span></h2>
+        <h2><span class="num">08</span><span>Honors</span><span class="rule"></span></h2>
         <ul class="rows">
           <li>
             <span class="ts">Feb 2026</span>
