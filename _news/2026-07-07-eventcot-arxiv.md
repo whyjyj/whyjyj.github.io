@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Preprint on **[EventCoT](#pub-eventcot)** for reasoning temporal localization in videos is now on arXiv.
+Preprint on **[EventCoT](#pub-eventcot)**, an event-centric chain-of-thought for video LLMs to reason about when events happen, is now on arXiv.
