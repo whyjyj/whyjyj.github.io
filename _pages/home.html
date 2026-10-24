@@ -426,8 +426,8 @@ description: >-
         width: 100%;
         height: auto;
       }
-      /* Preprints read in muted grey and only a published venue takes the accent, so the accepted
-         paper stands out without a badge. */
+      /* Preprints read in muted grey; a published paper gets its venue in the accent and an accent
+         rule down the card's left edge, so it stands out without a badge. */
       .pub .venue {
         font: 600 0.72rem var(--mono);
         color: var(--muted);
@@ -436,6 +436,9 @@ description: >-
       }
       .pub .venue .accepted {
         color: var(--accent);
+      }
+      .pub.published {
+        border-left: 3px solid var(--accent);
       }
       .pub h3 {
         margin: 4px 0 6px;
@@ -812,7 +815,7 @@ description: >-
           </pre>
         </article>
 
-        <article class="pub" id="pub-dpseg">
+        <article class="pub published" id="pub-dpseg">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/dpseg.jpg' | relative_url }}" target="_blank" rel="noopener"
             ><img src="{{ '/assets/img/publication_preview/dpseg-thumb.jpg' | relative_url }}" loading="lazy" alt="DPSeg teaser" class="thumb"
           /></a>
