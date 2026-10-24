@@ -368,8 +368,8 @@
         width: 100%;
         height: auto;
       }
-      /* Preprints read in muted grey and only a published venue takes the accent, so the accepted
-         paper stands out without a badge. */
+      /* Preprints read in muted grey; a published paper gets its venue in the accent and an accent
+         rule down the card's left edge, so it stands out without a badge. */
       .pub .venue {
         font: 600 0.72rem var(--mono);
         color: var(--muted);
@@ -378,6 +378,9 @@
       }
       .pub .venue .accepted {
         color: var(--accent);
+      }
+      .pub.published {
+        border-left: 3px solid var(--accent);
       }
       .pub h3 {
         margin: 4px 0 6px;
@@ -558,7 +561,7 @@
   journal = {arXiv preprint arXiv:2607.04872},
   year    = {2026}
 }
-          </pre> </article> <article class="pub" id="pub-dpseg"> <a class="thumb-link" href="/assets/img/publication_preview/dpseg.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/dpseg-thumb.jpg" loading="lazy" alt="DPSeg teaser" class="thumb"></a> <div> <div class="venue"> <span class="accepted">Neurocomputing</span> · 2026</div> <h3>Dual Path Semantic Segmentation with Locality Guidance Tokens</h3> <p class="authors"> Jaeik Kim, <span class="me">Yoonjae Baek</span>, Aecheon Jung, Hongyeob Kim, Soyun Choi, Youngeun Kim, Jaeyoung Do, Sungeun Hong </p> <div class="actions"> <a href="https://doi.org/10.1016/j.neucom.2026.135268" target="_blank" rel="noopener">paper</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Learnable tokens have shown effectiveness in semantic segmentation by capturing local information, yet most methods rely on late fusion at the decoder, losing fine-grained locality. Our theoretical and empirical analyses reveal that the timing and strategy of token integration significantly influence feature alignment and segmentation accuracy. We propose Dual Path Segmentation (DPSeg), a lightweight and model-agnostic framework that preserves locality throughout encoding and decoding. Our proposed Locality Guidance (LG) tokens play two roles: (i) guiding adjacent patches during encoding to enhance object-consistent attention and fine-grained representations, and (ii) serving as mask proposals in decoding to refine structural consistency. Our path mixing decoder integrates local details with global context without extra data or architectural changes. DPSeg consistently improves performance across various baselines and achieves promising results on various datasets. </p> <pre class="bibtex">
+          </pre> </article> <article class="pub published" id="pub-dpseg"> <a class="thumb-link" href="/assets/img/publication_preview/dpseg.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/dpseg-thumb.jpg" loading="lazy" alt="DPSeg teaser" class="thumb"></a> <div> <div class="venue"> <span class="accepted">Neurocomputing</span> · 2026</div> <h3>Dual Path Semantic Segmentation with Locality Guidance Tokens</h3> <p class="authors"> Jaeik Kim, <span class="me">Yoonjae Baek</span>, Aecheon Jung, Hongyeob Kim, Soyun Choi, Youngeun Kim, Jaeyoung Do, Sungeun Hong </p> <div class="actions"> <a href="https://doi.org/10.1016/j.neucom.2026.135268" target="_blank" rel="noopener">paper</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Learnable tokens have shown effectiveness in semantic segmentation by capturing local information, yet most methods rely on late fusion at the decoder, losing fine-grained locality. Our theoretical and empirical analyses reveal that the timing and strategy of token integration significantly influence feature alignment and segmentation accuracy. We propose Dual Path Segmentation (DPSeg), a lightweight and model-agnostic framework that preserves locality throughout encoding and decoding. Our proposed Locality Guidance (LG) tokens play two roles: (i) guiding adjacent patches during encoding to enhance object-consistent attention and fine-grained representations, and (ii) serving as mask proposals in decoding to refine structural consistency. Our path mixing decoder integrates local details with global context without extra data or architectural changes. DPSeg consistently improves performance across various baselines and achieves promising results on various datasets. </p> <pre class="bibtex">
 @article{kim2026dual,
   title   = {Dual Path Semantic Segmentation with Locality Guidance Tokens},
   author  = {Kim, Jaeik and Baek, Yoonjae and Jung, Aecheon and Kim, Hongyeob and Choi, Soyun and Kim, Youngeun and Do, Jaeyoung and Hong, Sungeun},
