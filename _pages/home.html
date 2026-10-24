@@ -192,6 +192,10 @@ description: >-
         border: 1px solid var(--line);
         display: block;
       }
+      /* The portrait is shot on white, which glares against the dark background. */
+      :root[data-theme="dark"] .photo {
+        filter: brightness(0.88);
+      }
       .name {
         margin: 0 0 6px;
         font-size: clamp(1.45rem, 6.5vw, 2.4rem);
