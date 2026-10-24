@@ -426,21 +426,16 @@ description: >-
         width: 100%;
         height: auto;
       }
-      /* Only a published venue gets a badge; preprints stay plain text, so the accepted paper stands out. */
+      /* Preprints read in muted grey and only a published venue takes the accent, so the accepted
+         paper stands out without a badge. */
       .pub .venue {
-        display: flex;
-        align-items: center;
-        gap: 8px;
         font: 600 0.72rem var(--mono);
         color: var(--muted);
         text-transform: uppercase;
         letter-spacing: 0.04em;
       }
-      .pub .badge {
-        padding: 1px 7px;
-        border-radius: 3px;
-        background: var(--accent);
-        color: var(--surface);
+      .pub .venue .accepted {
+        color: var(--accent);
       }
       .pub h3 {
         margin: 4px 0 6px;
@@ -822,7 +817,7 @@ description: >-
             ><img src="{{ '/assets/img/publication_preview/dpseg-thumb.jpg' | relative_url }}" loading="lazy" alt="DPSeg teaser" class="thumb"
           /></a>
           <div>
-            <div class="venue"><span class="badge">Neurocomputing</span>2026</div>
+            <div class="venue"><span class="accepted">Neurocomputing</span> · 2026</div>
             <h3>Dual Path Semantic Segmentation with Locality Guidance Tokens</h3>
             <p class="authors">
               Jaeik Kim, <span class="me">Yoonjae Baek</span>, Aecheon Jung, Hongyeob Kim, Soyun Choi, Youngeun Kim, Jaeyoung Do, Sungeun Hong
