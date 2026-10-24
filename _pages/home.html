@@ -365,26 +365,32 @@ description: >-
         vertical-align: 1px;
       }
       /* News links jump to the paper card or honor row below; the target flashes so it is easy
-         to spot after the scroll. */
+         to spot after the scroll, then settles back. :target keeps matching while the URL hash
+         stays, so the highlight lives only in the animation and never sticks. */
       @media (prefers-reduced-motion: no-preference) {
         html {
           scroll-behavior: smooth;
         }
-        .pub:target,
         .rows li:target {
           animation: landed 1.8s ease-out;
+        }
+        .pub:target {
+          animation: landed-card 1.8s ease-out;
         }
       }
       .pub,
       .rows li {
         scroll-margin-top: 24px;
       }
-      .pub:target {
-        border-color: var(--accent);
-      }
       @keyframes landed {
         from {
           background-color: var(--accent-soft);
+        }
+      }
+      @keyframes landed-card {
+        from {
+          background-color: var(--accent-soft);
+          border-color: var(--accent);
         }
       }
       /* Keeps "Prof. Name" on one line so a narrow screen never splits the title from the name. */
