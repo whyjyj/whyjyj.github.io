@@ -307,16 +307,16 @@
         vertical-align: 1px;
       }
       /* News links jump to the paper card or honor row below; the target flashes so it is easy
-         to spot after the scroll, then settles back. :target keeps matching while the URL hash
-         stays, so the highlight lives only in the animation and never sticks. */
+         to spot after the scroll, then settles back. The script below sets .landed on each jump,
+         so following the same link twice flashes it again. */
       @media (prefers-reduced-motion: no-preference) {
         html {
           scroll-behavior: smooth;
         }
-        .rows li:target {
+        .rows li.landed {
           animation: landed 1.8s ease-out;
         }
-        .pub:target {
+        .pub.landed {
           animation: landed-card 1.8s ease-out;
         }
       }
@@ -590,6 +590,25 @@
 
         var email = document.getElementById("emailLink");
         email.href = "mailto:" + email.dataset.user + "@" + email.dataset.host;
+
+        // Flash whatever a news link jumps to, and the target of a link opened from elsewhere.
+        // Removing the class and forcing a reflow restarts the animation on a repeat click.
+        function flash(id) {
+          var el = id && document.getElementById(id);
+          if (!el) return;
+          el.classList.remove("landed");
+          void el.offsetWidth;
+          el.classList.add("landed");
+        }
+        document.addEventListener("animationend", function (e) {
+          if (e.animationName.indexOf("landed") === 0) e.target.classList.remove("landed");
+        });
+        document.querySelectorAll('.news a[href^="#"]').forEach(function (a) {
+          a.addEventListener("click", function () {
+            flash(a.getAttribute("href").slice(1));
+          });
+        });
+        flash(decodeURIComponent(location.hash.slice(1)));
 
         // Abstract and BibTeX share the space under a paper, so opening one closes the other.
         document.querySelectorAll("[data-panel]").forEach(function (btn) {
