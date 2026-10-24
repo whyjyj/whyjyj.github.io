@@ -121,7 +121,7 @@ cv:
     Services:
       - name: Student Volunteer
         detail: Conference on Robot Learning (CoRL 2025), Seoul, South Korea
-        date: 2025
+        date: 2025-09
 
     Leadership:
       - name: President
