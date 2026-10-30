@@ -59,6 +59,9 @@ description: >-
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     />
+    <!-- The Hangul name only: text= subsets the font to these three glyphs, so it costs a few KB
+         and the name looks the same on every OS instead of falling back to Malgun Gothic. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&text=%EB%B0%B1%EC%9C%A4%EC%9E%AC&display=swap" />
 
     <!-- Resolve the theme before first paint so the page never flashes the wrong colours. -->
     <script>
@@ -108,7 +111,9 @@ description: >-
         --line: #262a33;
         --accent: #7aa7ff;
         --accent-soft: rgba(122, 167, 255, 0.12);
-        --card: #161920;
+        /* A step apart, so the link pills read against the paper cards they sit on. */
+        --surface: #1c2028;
+        --card: #14171d;
       }
 
       * {
@@ -173,6 +178,13 @@ description: >-
         stroke-width: 2;
         stroke-linecap: round;
       }
+      /* Below 900px the fixed button would sit over the text column while scrolling, so it stays
+         at the top of the page instead. */
+      @media (max-width: 900px) {
+        .theme-toggle {
+          position: absolute;
+        }
+      }
       :root[data-theme="light"] .icon-sun,
       :root[data-theme="dark"] .icon-moon {
         display: none;
@@ -214,7 +226,7 @@ description: >-
       }
       .name .hangul {
         margin-left: 12px;
-        font-family: var(--sans);
+        font-family: "Noto Sans KR", var(--sans);
         font-size: 1.1rem;
         font-weight: 500;
         color: var(--muted);
@@ -313,6 +325,10 @@ description: >-
         padding: 9px 0;
         border-bottom: 1px dashed var(--line);
       }
+      /* Rows dated by a single month need only the news-width column. */
+      .rows.month li {
+        grid-template-columns: 90px 1fr;
+      }
       .rows li:last-child {
         border-bottom: 0;
       }
@@ -325,8 +341,8 @@ description: >-
         color: var(--muted);
         font-size: 0.92rem;
       }
-      /* News: compact rows that light up on hover. The
-         list bleeds 10px past the column so the text stays aligned with the other sections. */
+      /* News: compact rows. The list bleeds 10px past the column so the text lines up with the
+         month-dated rows below. */
       .news {
         margin: 0 -10px;
         padding: 0;
@@ -340,9 +356,6 @@ description: >-
         align-items: baseline;
         padding: 6px 10px;
         border-radius: 3px;
-      }
-      .news li:hover {
-        background: var(--card);
       }
       .news .ts {
         color: var(--muted);
@@ -400,11 +413,12 @@ description: >-
 
       /* ---------- publications ---------- */
       /* Each paper is a card with the teaser on the left.
-         The teasers are wide (2.5–3.3 : 1), so each keeps its own ratio at about a third of the
-         card instead of being boxed into a fixed thumbnail shape. */
+         The teasers range from 1.6 to 3.3 : 1, so each keeps its own ratio at two fifths of the
+         card instead of being boxed into a fixed thumbnail shape. Only the links inside are
+         clickable, so hover just outlines the card rather than lifting it like a button. */
       .pub {
         display: grid;
-        grid-template-columns: minmax(0, 36%) 1fr;
+        grid-template-columns: minmax(0, 40%) 1fr;
         gap: 12px 22px;
         align-items: start;
         margin-bottom: 14px;
@@ -412,13 +426,10 @@ description: >-
         background: var(--card);
         border: 1px solid var(--line);
         border-radius: 4px;
-        transition:
-          border-color 0.15s,
-          transform 0.15s;
+        transition: border-color 0.15s;
       }
       .pub:hover {
         border-color: var(--accent);
-        transform: translateY(-1px);
       }
       /* The figures are drawn on white, so they keep a white backing in dark mode too. */
       .pub .thumb-link {
@@ -585,7 +596,8 @@ description: >-
           display: block;
           margin: 4px 0 0;
         }
-        .rows li {
+        .rows li,
+        .rows.month li {
           grid-template-columns: 1fr;
           gap: 0;
         }
@@ -593,8 +605,20 @@ description: >-
           grid-template-columns: 70px 1fr;
           gap: 12px;
         }
+        /* Tighter card padding and pills keep a five-link row on one line at 390px. */
         .pub {
           grid-template-columns: 1fr;
+          padding: 12px;
+        }
+        .pub .actions {
+          gap: 4px;
+        }
+        .pub .actions a,
+        .pub .actions button {
+          padding: 2px 7px;
+        }
+        .pub .actions button::after {
+          margin-left: 3px;
         }
       }
       /* Smallest phones: shrink the affiliations so "Advisor Prof. Suha Kwak" and
@@ -788,7 +812,11 @@ description: >-
 
         <article class="pub" id="pub-eventcot">
           <a class="thumb-link" href="{{ '/assets/img/publication_preview/eventcot.jpg' | relative_url }}" target="_blank" rel="noopener"
-            ><img src="{{ '/assets/img/publication_preview/eventcot-thumb.jpg' | relative_url }}" loading="lazy" alt="EventCoT teaser" class="thumb"
+            ><img
+              src="{{ '/assets/img/publication_preview/eventcot-thumb.jpg' | relative_url }}"
+              loading="lazy"
+              alt="EventCoT architecture: event-centric tokenization, then event selection and reasoning"
+              class="thumb"
           /></a>
           <div>
             <div class="venue">Under Review · 2026</div>
@@ -912,7 +940,7 @@ description: >-
 
       <section class="section">
         <h2><span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span></h2>
-        <ul class="rows">
+        <ul class="rows month">
           <li id="honor-ipiu-2026">
             <span class="ts">Feb 2026</span>
             <span
@@ -930,7 +958,7 @@ description: >-
         </ul>
       </section>
 
-      <footer>© {{ site.time | date: "%Y" }} Yoonjae Baek</footer>
+      <footer>© {{ site.time | date: "%Y" }} Yoonjae Baek · Last updated {{ site.time | date: "%b %Y" }}</footer>
     </main>
 
     <script>
