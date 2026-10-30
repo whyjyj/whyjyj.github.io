@@ -12,7 +12,7 @@
           "https://www.linkedin.com/in/whyjyj/"
         ]
       }
-    </script> <link rel="icon" href="data:,"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"> <script>
+    </script> <link rel="icon" href="data:,"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&amp;text=%EB%B0%B1%EC%9C%A4%EC%9E%AC&amp;display=swap"> <script>
       (function () {
         var theme = "light";
         try {
@@ -41,6 +41,8 @@
         --card: #f3f1eb;
         --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+        /* Date column shared by news and the timestamped rows, so their text starts on one line. */
+        --ts-col: 150px;
       }
       :root[data-theme="dark"] {
         --bg: #0f1115;
@@ -50,7 +52,9 @@
         --line: #262a33;
         --accent: #7aa7ff;
         --accent-soft: rgba(122, 167, 255, 0.12);
-        --card: #161920;
+        /* A step apart, so the link pills read against the paper cards they sit on. */
+        --surface: #1c2028;
+        --card: #14171d;
       }
 
       * {
@@ -115,6 +119,13 @@
         stroke-width: 2;
         stroke-linecap: round;
       }
+      /* Below 900px the fixed button would sit over the text column while scrolling, so it stays
+         at the top of the page instead. */
+      @media (max-width: 900px) {
+        .theme-toggle {
+          position: absolute;
+        }
+      }
       :root[data-theme="light"] .icon-sun,
       :root[data-theme="dark"] .icon-moon {
         display: none;
@@ -156,7 +167,7 @@
       }
       .name .hangul {
         margin-left: 12px;
-        font-family: var(--sans);
+        font-family: "Noto Sans KR", var(--sans);
         font-size: 1.1rem;
         font-weight: 500;
         color: var(--muted);
@@ -250,7 +261,7 @@
       }
       .rows li {
         display: grid;
-        grid-template-columns: 175px 1fr;
+        grid-template-columns: var(--ts-col) 1fr;
         gap: 18px;
         padding: 9px 0;
         border-bottom: 1px dashed var(--line);
@@ -267,8 +278,8 @@
         color: var(--muted);
         font-size: 0.92rem;
       }
-      /* News: compact rows that light up on hover. The
-         list bleeds 10px past the column so the text stays aligned with the other sections. */
+      /* News: compact rows. The list bleeds 10px past the column so the text stays aligned with
+         the other sections. */
       .news {
         margin: 0 -10px;
         padding: 0;
@@ -277,14 +288,11 @@
       }
       .news li {
         display: grid;
-        grid-template-columns: 90px 1fr;
+        grid-template-columns: var(--ts-col) 1fr;
         gap: 18px;
         align-items: baseline;
         padding: 6px 10px;
         border-radius: 3px;
-      }
-      .news li:hover {
-        background: var(--card);
       }
       .news .ts {
         color: var(--muted);
@@ -342,11 +350,12 @@
 
       /* ---------- publications ---------- */
       /* Each paper is a card with the teaser on the left.
-         The teasers are wide (2.5–3.3 : 1), so each keeps its own ratio at about a third of the
-         card instead of being boxed into a fixed thumbnail shape. */
+         The teasers range from 1.6 to 3.3 : 1, so each keeps its own ratio at two fifths of the
+         card instead of being boxed into a fixed thumbnail shape. Only the links inside are
+         clickable, so hover just outlines the card rather than lifting it like a button. */
       .pub {
         display: grid;
-        grid-template-columns: minmax(0, 36%) 1fr;
+        grid-template-columns: minmax(0, 40%) 1fr;
         gap: 12px 22px;
         align-items: start;
         margin-bottom: 14px;
@@ -354,13 +363,10 @@
         background: var(--card);
         border: 1px solid var(--line);
         border-radius: 4px;
-        transition:
-          border-color 0.15s,
-          transform 0.15s;
+        transition: border-color 0.15s;
       }
       .pub:hover {
         border-color: var(--accent);
-        transform: translateY(-1px);
       }
       /* The figures are drawn on white, so they keep a white backing in dark mode too. */
       .pub .thumb-link {
@@ -535,8 +541,20 @@
           grid-template-columns: 70px 1fr;
           gap: 12px;
         }
+        /* Tighter card padding and pills keep a five-link row on one line at 390px. */
         .pub {
           grid-template-columns: 1fr;
+          padding: 12px;
+        }
+        .pub .actions {
+          gap: 4px;
+        }
+        .pub .actions a,
+        .pub .actions button {
+          padding: 2px 7px;
+        }
+        .pub .actions button::after {
+          margin-left: 3px;
         }
       }
       /* Smallest phones: shrink the affiliations so "Advisor Prof. Suha Kwak" and
@@ -560,7 +578,7 @@
   journal = {arXiv preprint arXiv:2610.05719},
   year    = {2026}
 }
-          </pre> </article> <article class="pub" id="pub-eventcot"> <a class="thumb-link" href="/assets/img/publication_preview/eventcot.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/eventcot-thumb.jpg" loading="lazy" alt="EventCoT teaser" class="thumb"></a> <div> <div class="venue">Under Review · 2026</div> <h3>EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization</h3> <p class="authors">Youngkil Song, <span class="me">Yoonjae Baek</span>, Dongwon Kim, Inho Kim, Dongkeun Kim, Suha Kwak</p> <div class="actions"> <a href="https://arxiv.org/abs/2607.04872" target="_blank" rel="noopener">arXiv</a> <a href="https://arxiv.org/pdf/2607.04872" target="_blank" rel="noopener">pdf</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Reasoning temporal localization (RTL) requires a model to generate an answer that itself contains the time interval supporting it, so high-level reasoning and precise temporal grounding must be produced jointly in a single response. To tackle this challenging task, we propose the first event-centric video chain-of-thought framework, dubbed EventCoT. EventCoT first performs event-centric tokenization of the input video to convert it into compact event tokens, enabling efficient identification of question-relevant events. It then reasons within the identified events to generate the answer, grounding the time interval via embedding matching that aligns placeholder tokens with visual embeddings. EventCoT achieves state-of-the-art results on ActivityNet-RTL for reasoning temporal localization while using substantially fewer visual tokens than previous work. To verify its general performance, we further evaluate EventCoT on the grounded video question answering benchmark ReXTime, where it attains strong zero-shot results. </p> <pre class="bibtex">
+          </pre> </article> <article class="pub" id="pub-eventcot"> <a class="thumb-link" href="/assets/img/publication_preview/eventcot.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/eventcot-thumb.jpg" loading="lazy" alt="EventCoT architecture: event-centric tokenization, then event selection and reasoning" class="thumb"></a> <div> <div class="venue">Under Review · 2026</div> <h3>EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization</h3> <p class="authors">Youngkil Song, <span class="me">Yoonjae Baek</span>, Dongwon Kim, Inho Kim, Dongkeun Kim, Suha Kwak</p> <div class="actions"> <a href="https://arxiv.org/abs/2607.04872" target="_blank" rel="noopener">arXiv</a> <a href="https://arxiv.org/pdf/2607.04872" target="_blank" rel="noopener">pdf</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Reasoning temporal localization (RTL) requires a model to generate an answer that itself contains the time interval supporting it, so high-level reasoning and precise temporal grounding must be produced jointly in a single response. To tackle this challenging task, we propose the first event-centric video chain-of-thought framework, dubbed EventCoT. EventCoT first performs event-centric tokenization of the input video to convert it into compact event tokens, enabling efficient identification of question-relevant events. It then reasons within the identified events to generate the answer, grounding the time interval via embedding matching that aligns placeholder tokens with visual embeddings. EventCoT achieves state-of-the-art results on ActivityNet-RTL for reasoning temporal localization while using substantially fewer visual tokens than previous work. To verify its general performance, we further evaluate EventCoT on the grounded video question answering benchmark ReXTime, where it attains strong zero-shot results. </p> <pre class="bibtex">
 @article{song2026eventcot,
   title   = {EventCoT: Event-centric Video Chain-of-thought for Reasoning Temporal Localization},
   author  = {Song, Youngkil and Baek, Yoonjae and Kim, Dongwon and Kim, Inho and Kim, Dongkeun and Kwak, Suha},
@@ -577,7 +595,7 @@
   year    = {2026},
   doi     = {10.1016/j.neucom.2026.135268}
 }
-          </pre> </article> </section> <section class="section"> <h2> <span class="num">05</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">06</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span> </h2> <ul class="rows"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers, for EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek</footer> </main> <script>
+          </pre> </article> </section> <section class="section"> <h2> <span class="num">05</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">06</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span> </h2> <ul class="rows"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers, for EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek · Last updated Oct 2026</footer> </main> <script>
       (function () {
         var root = document.documentElement;
         document.getElementById("themeToggle").addEventListener("click", function () {
