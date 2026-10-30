@@ -38,6 +38,9 @@
         --line: #e6e4de;
         --accent: #2f6fdf;
         --accent-soft: rgba(47, 111, 223, 0.1);
+        /* Second accent, used only for the interest chips: a warm counterpart to the link blue. */
+        --accent2: #b9553a;
+        --accent2-soft: rgba(185, 85, 58, 0.11);
         --card: #f3f1eb;
         --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
@@ -50,6 +53,8 @@
         --line: #262a33;
         --accent: #7aa7ff;
         --accent-soft: rgba(122, 167, 255, 0.12);
+        --accent2: #e9937b;
+        --accent2-soft: rgba(233, 147, 123, 0.14);
         /* A step apart, so the link pills read against the paper cards they sit on. */
         --surface: #1c2028;
         --card: #14171d;
@@ -201,22 +206,88 @@
         font-family: var(--mono);
         font-size: 0.85rem;
       }
+      /* Soft accent fill with a small line icon; the border only shows on hover. */
       .links a {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         padding: 3px 11px;
-        border: 1px solid var(--line);
+        border: 1px solid transparent;
         border-radius: 999px;
-        color: var(--text);
+        background: var(--accent-soft);
+        color: var(--accent);
       }
       .links a:hover {
         border-color: var(--accent);
-        color: var(--accent);
         text-decoration: none;
+      }
+      .links svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.85;
       }
 
       /* ---------- sections ---------- */
       .section {
         margin-bottom: 52px;
+        scroll-margin-top: 24px;
+      }
+      /* Section list fixed at the right edge on wide screens only, where it clears the text
+         column. The script marks the section in view; its dash grows and turns accent. */
+      .sidenav {
+        display: none;
+      }
+      @media (min-width: 1180px) {
+        .sidenav {
+          display: block;
+          position: fixed;
+          top: 50%;
+          right: 28px;
+          transform: translateY(-50%);
+          font: 500 0.72rem var(--mono);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .sidenav ul {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+        .sidenav a {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--muted);
+        }
+        .sidenav a::before {
+          content: "";
+          width: 14px;
+          height: 1px;
+          background: var(--line);
+          transition:
+            width 0.15s,
+            background 0.15s;
+        }
+        .sidenav a:hover,
+        .sidenav a.active {
+          color: var(--text);
+          text-decoration: none;
+        }
+        .sidenav a.active::before {
+          width: 24px;
+          background: var(--accent);
+        }
+        .sidenav .num {
+          color: var(--accent);
+        }
       }
       .section h2 {
         display: flex;
@@ -238,17 +309,20 @@
       .section p {
         margin: 0 0 12px;
       }
+      /* Interest chips close the About section. They are not links, so they take the warm second
+         accent rather than the link blue, and square corners set them apart from the round pills. */
       .tags {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
+        margin-top: 18px;
       }
       .tags span {
-        padding: 4px 12px;
+        padding: 3px 11px;
         border-radius: 6px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font: 500 0.85rem var(--mono);
+        background: var(--accent2-soft);
+        color: var(--accent2);
+        font: 500 0.82rem var(--mono);
       }
 
       /* timestamped rows shared by news / experience / education / awards */
@@ -302,17 +376,18 @@
       .news strong {
         font-weight: 600;
       }
+      /* The newest item carries a small "new" label in the warm second accent, so it reads as a
+         marker rather than a link. */
       .news .new {
         display: inline-block;
         margin-right: 8px;
-        padding: 0 6px;
-        border: 1px solid var(--accent);
-        border-radius: 3px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-size: 0.68rem;
+        padding: 1px 8px;
+        border-radius: 999px;
+        background: var(--accent2-soft);
+        color: var(--accent2);
+        font-size: 0.64rem;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         vertical-align: 1px;
       }
@@ -375,7 +450,12 @@
         display: block;
         overflow: hidden;
         background: #fff;
-        border-radius: 2px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+      }
+      /* Dimmed like the portrait, so the white figures do not glare against the dark cards. */
+      :root[data-theme="dark"] .pub .thumb {
+        filter: brightness(0.88);
       }
       .pub .thumb {
         display: block;
@@ -514,6 +594,13 @@
         .role .item {
           white-space: normal;
         }
+        /* The lab takes its own line beside the photo instead of wrapping after the separator. */
+        .role .sep {
+          display: none;
+        }
+        .role .lab {
+          display: block;
+        }
         .tagline {
           grid-column: 1 / -1;
           margin: 18px 0 14px;
@@ -567,7 +654,7 @@
           font-size: 0.7rem;
         }
       }
-    </style> </head> <body> <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme"> <svg class="icon-sun" viewbox="0 0 24 24" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path> </svg> <svg class="icon-moon" viewbox="0 0 24 24" aria-hidden="true"> <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path> </svg> </button> <main class="container"> <header class="hero"> <img src="/assets/img/profile.jpg" alt="Yoonjae Baek" class="photo"> <div> <h1 class="name">Yoonjae Baek<span class="dot">.</span><span class="hangul">백윤재</span> </h1> <p class="role"> <span class="item"><span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a></span> <span class="item"><span class="k">Advisor</span> <span class="nb">Prof. <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a></span></span> <span class="item"><span class="k">Lab</span> <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a></span> </p> <p class="tagline">Building intelligent agents that perceive, reason, and act in the real world.</p> <ul class="links"> <li><a id="emailLink" href="#" data-user="yoonjae.baek" data-host="postech.ac.kr">email</a></li> <li> <a href="https://scholar.google.com/citations?user=bRxRkzQAAAAJ" target="_blank" rel="noopener">scholar</a> </li> <li><a href="https://github.com/whyjyj" target="_blank" rel="noopener">github</a></li> <li> <a href="https://www.linkedin.com/in/whyjyj/" target="_blank" rel="noopener">linkedin</a> </li> <li><a href="/assets/rendercv/rendercv_output/Yoonjae_Baek_CV.pdf" target="_blank" rel="noopener">cv</a></li> </ul> </div> </header> <section class="section"> <h2> <span class="num">01</span><span>About</span><span class="rule"></span> </h2> <p> I'm a Master's student in the <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">Graduate School of Artificial Intelligence</a> at <a href="https://www.postech.ac.kr/eng/" target="_blank" rel="noopener">POSTECH</a>, working in the <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a> under the supervision of Prof. <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>. </p> <p> My research goal is to build intelligent agents that operate in the real world. Toward this goal, I work on Embodied AI and computer vision: Vision-Language-Action (VLA) models that connect perception and language to physical action, how to make such agents keep working once they are deployed outside controlled settings, and video understanding that lets them reason about how events unfold over time. </p> </section> <section class="section"> <h2> <span class="num">02</span><span>Interests</span><span class="rule"></span> </h2> <div class="tags"> <span>Embodied AI</span> <span>Vision-Language-Action Models</span> <span>Real-World Deployment</span> <span>Video Understanding</span> </div> </section> <section class="section"> <h2> <span class="num">03</span><span>News</span><span class="rule"></span> </h2> <ul class="news"> <li> <span class="ts">Oct 2026</span> <span><span class="new">New</span>Two VLA preprints are now on arXiv: <strong><a href="#pub-self-compensating-vla">Self-Compensating VLA</a></strong> for robot execution errors and <strong><a href="#pub-race">RACE</a></strong> for long action chunks.</span> </li> <li> <span class="ts">Oct 2026</span> <span><strong><a href="#pub-dpseg">DPSeg</a></strong>, on semantic segmentation with locality guidance tokens, is published in <strong>Neurocomputing</strong>.</span> </li> <li> <span class="ts">Jul 2026</span> <span>Preprint on <strong><a href="#pub-eventcot">EventCoT</a></strong>, an event-centric chain-of-thought for video LLMs to reason about when events happen, is now on arXiv.</span> </li> <li> <span class="ts">Feb 2026</span> <span>Received the <strong><a href="#honor-ipiu-2026">Gold Prize</a></strong> (top 3 of 368 papers) for <strong><a href="#pub-eventcot">EventCoT</a></strong> at <strong>IPIU 2026</strong>.</span> </li> </ul> </section> <section class="section"> <h2> <span class="num">04</span><span>Publications</span><span class="rule"></span> </h2> <article class="pub" id="pub-self-compensating-vla"> <a class="thumb-link" href="/assets/img/publication_preview/robostress.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/robostress-thumb.jpg" loading="lazy" alt="Self-compensating VLA and the RoboStress benchmark" class="thumb"></a> <div> <div class="venue">Under Review · 2026</div> <h3>Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing</h3> <p class="authors"> Sohyun Lee*, <span class="me">Yoonjae Baek</span>*, Jaesang Won, Jinnyeong Kim, Hyunwoo Kang, Seung-Hwan Baek, Ivan Laptev, Suha Kwak <br>(*equal contribution) </p> <div class="actions"> <a href="https://arxiv.org/abs/2609.37334" target="_blank" rel="noopener">arXiv</a> <a href="https://arxiv.org/pdf/2609.37334" target="_blank" rel="noopener">pdf</a> <a href="https://sohyun-l.github.io/SelfCompensatingVLA_project_page/" target="_blank" rel="noopener">website</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, such as wear and payload changes. We propose self-compensating VLA, a deployment-time adaptation method that enables a VLA policy to pre-compensate for the robot's execution errors when generating commands. Without task rewards or labels, it updates the policy online using the residual between the action commanded by a VLA and the motion executed by the robot. To stress-test VLA robustness across execution conditions that are impractical to cover with physical robots alone, we introduce RoboStress, a controlled simulation benchmark. It combines established joint-level models of friction, backlash, compliance, and gravity-compensation error into seven deployment scenarios whose execution errors depend on the robot's state and motion history. On RoboStress, self-compensating VLA achieves higher average task success than both the base policies and methods that build in robustness during training. On two physical robot arms with different usage histories, it raises the average task success rate by more than 30 percentage points on each arm, and the gains extend to objects not seen in the task demonstrations. </p> <pre class="bibtex">
+    </style> </head> <body> <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme"> <svg class="icon-sun" viewbox="0 0 24 24" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path> </svg> <svg class="icon-moon" viewbox="0 0 24 24" aria-hidden="true"> <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path> </svg> </button> <nav class="sidenav" aria-label="Sections"> <ul> <li> <a href="#about"><span class="num">01</span>About</a> </li> <li> <a href="#news"><span class="num">02</span>News</a> </li> <li> <a href="#publications"><span class="num">03</span>Publications</a> </li> <li> <a href="#experience"><span class="num">04</span>Experience</a> </li> <li> <a href="#education"><span class="num">05</span>Education</a> </li> <li> <a href="#honors"><span class="num">06</span>Honors</a> </li> </ul> </nav> <main class="container"> <header class="hero"> <img src="/assets/img/profile.jpg" alt="Yoonjae Baek" class="photo"> <div> <h1 class="name">Yoonjae Baek<span class="dot">.</span><span class="hangul">백윤재</span> </h1> <p class="role"> <span class="item"><span class="k">M.S.</span> @ <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">POSTECH GSAI</a> <span class="sep">·</span> <a class="nb lab" href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a></span> <span class="item"><span class="k">Advisor</span> <span class="nb">Prof. <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a></span></span> </p> <p class="tagline">Building intelligent agents that perceive, reason, and act in the real world.</p> <ul class="links"> <li> <a id="emailLink" href="#" data-user="yoonjae.baek" data-host="postech.ac.kr"> <svg viewbox="0 0 24 24" aria-hidden="true"> <rect x="3" y="5" width="18" height="14" rx="2"></rect> <path d="M3 7l9 6 9-6"></path> </svg> email </a> </li> <li> <a href="https://scholar.google.com/citations?user=bRxRkzQAAAAJ" target="_blank" rel="noopener"> <svg viewbox="0 0 24 24" aria-hidden="true"> <path d="M12 3L2 9l10 6 10-6-10-6z"></path> <path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path> </svg> scholar </a> </li> <li> <a href="https://github.com/whyjyj" target="_blank" rel="noopener"> <svg viewbox="0 0 24 24" aria-hidden="true"> <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.4-4 1.5a13.4 13.4 0 0 0-7 0C6.1.6 4.9 1 4.9 1A5 5 0 0 0 4.8 4.8 5.4 5.4 0 0 0 3.3 8.5c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"></path> </svg> github </a> </li> <li> <a href="https://www.linkedin.com/in/whyjyj/" target="_blank" rel="noopener"> <svg viewbox="0 0 24 24" aria-hidden="true"> <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path> <rect x="2" y="9" width="4" height="12"></rect> <circle cx="4" cy="4" r="2"></circle> </svg> linkedin </a> </li> <li> <a href="/assets/rendercv/rendercv_output/Yoonjae_Baek_CV.pdf" target="_blank" rel="noopener"> <svg viewbox="0 0 24 24" aria-hidden="true"> <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path> <path d="M14 2v6h6M8 13h8M8 17h8"></path> </svg> cv </a> </li> </ul> </div> </header> <section class="section" id="about"> <h2> <span class="num">01</span><span>About</span><span class="rule"></span> </h2> <p> I'm a Master's student in the <a href="https://ai.postech.ac.kr/" target="_blank" rel="noopener">Graduate School of Artificial Intelligence</a> at <a href="https://www.postech.ac.kr/eng/" target="_blank" rel="noopener">POSTECH</a>, working in the <a href="https://cvlab.postech.ac.kr" target="_blank" rel="noopener">Computer Vision Lab</a> under the supervision of Prof. <a href="https://suhakwak.github.io" target="_blank" rel="noopener">Suha Kwak</a>. </p> <p> My research goal is to build agents that operate in the real world. Toward this goal, I work on embodied AI and computer vision: policies that connect perception and language to physical action, from Vision-Language-Action (VLA) models to world models that let agents predict the outcome of their actions, ways to keep such agents working once they are deployed outside controlled settings, and video understanding that lets them reason about how events unfold over time. </p> <div class="tags" aria-label="Research interests"> <span>Vision-Language-Action Models</span> <span>World Models</span> <span>Real-World Deployment</span> <span>Video Understanding</span> </div> </section> <section class="section" id="news"> <h2> <span class="num">02</span><span>News</span><span class="rule"></span> </h2> <ul class="news"> <li> <span class="ts">Oct 2026</span> <span><span class="new">New</span>Two VLA preprints are now on arXiv: <strong><a href="#pub-self-compensating-vla">Self-Compensating VLA</a></strong> for robot execution errors and <strong><a href="#pub-race">RACE</a></strong> for long action chunks.</span> </li> <li> <span class="ts">Oct 2026</span> <span><strong><a href="#pub-dpseg">DPSeg</a></strong>, semantic segmentation with locality guidance tokens, has been published in <strong>Neurocomputing</strong>.</span> </li> <li> <span class="ts">Jul 2026</span> <span><strong><a href="#pub-eventcot">EventCoT</a></strong> is on arXiv: an event-centric chain-of-thought that lets video LLMs reason about when events happen.</span> </li> <li> <span class="ts">Feb 2026</span> <span>Received the <strong><a href="#honor-ipiu-2026">Gold Prize</a></strong> (top 3 of 368 papers) for <strong><a href="#pub-eventcot">EventCoT</a></strong> at <strong>IPIU 2026</strong>.</span> </li> </ul> </section> <section class="section" id="publications"> <h2> <span class="num">03</span><span>Publications</span><span class="rule"></span> </h2> <article class="pub" id="pub-self-compensating-vla"> <a class="thumb-link" href="/assets/img/publication_preview/robostress.jpg" target="_blank" rel="noopener"><img src="/assets/img/publication_preview/robostress-thumb.jpg" loading="lazy" alt="Self-compensating VLA and the RoboStress benchmark" class="thumb"></a> <div> <div class="venue">Under Review · 2026</div> <h3>Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing</h3> <p class="authors"> Sohyun Lee*, <span class="me">Yoonjae Baek</span>*, Jaesang Won, Jinnyeong Kim, Hyunwoo Kang, Seung-Hwan Baek, Ivan Laptev, Suha Kwak <br>(*equal contribution) </p> <div class="actions"> <a href="https://arxiv.org/abs/2609.37334" target="_blank" rel="noopener">arXiv</a> <a href="https://arxiv.org/pdf/2609.37334" target="_blank" rel="noopener">pdf</a> <a href="https://sohyun-l.github.io/SelfCompensatingVLA_project_page/" target="_blank" rel="noopener">website</a> <button type="button" data-panel="abstract" aria-expanded="false">abstract</button> <button type="button" data-panel="bibtex" aria-expanded="false">bibtex</button> </div> </div> <p class="abstract"> Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, such as wear and payload changes. We propose self-compensating VLA, a deployment-time adaptation method that enables a VLA policy to pre-compensate for the robot's execution errors when generating commands. Without task rewards or labels, it updates the policy online using the residual between the action commanded by a VLA and the motion executed by the robot. To stress-test VLA robustness across execution conditions that are impractical to cover with physical robots alone, we introduce RoboStress, a controlled simulation benchmark. It combines established joint-level models of friction, backlash, compliance, and gravity-compensation error into seven deployment scenarios whose execution errors depend on the robot's state and motion history. On RoboStress, self-compensating VLA achieves higher average task success than both the base policies and methods that build in robustness during training. On two physical robot arms with different usage histories, it raises the average task success rate by more than 30 percentage points on each arm, and the gains extend to objects not seen in the task demonstrations. </p> <pre class="bibtex">
 @article{lee2026taming,
   title   = {Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing},
   author  = {Lee, Sohyun and Baek, Yoonjae and Won, Jaesang and Kim, Jinnyeong and Kang, Hyunwoo and Baek, Seung-Hwan and Laptev, Ivan and Kwak, Suha},
@@ -598,7 +685,7 @@
   year    = {2026},
   doi     = {10.1016/j.neucom.2026.135268}
 }
-          </pre> </article> </section> <section class="section"> <h2> <span class="num">05</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">06</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span> </h2> <ul class="rows month"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers, for EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek · Last updated Oct 2026</footer> </main> <script>
+          </pre> </article> </section> <section class="section" id="experience"> <h2> <span class="num">04</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section" id="education"> <h2> <span class="num">05</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Pohang, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section" id="honors"> <h2> <span class="num">06</span><span>Honors &amp; Service</span><span class="rule"></span> </h2> <ul class="rows month"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop on Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers · EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek · Last updated Oct 2026</footer> </main> <script>
       (function () {
         var root = document.documentElement;
         document.getElementById("themeToggle").addEventListener("click", function () {
@@ -630,6 +717,41 @@
           });
         });
         flash(decodeURIComponent(location.hash.slice(1)));
+
+        // Side nav: the active entry is the last section whose top has passed a line a third of
+        // the way down the viewport, or the last section once the page is scrolled to the end.
+        var navLinks = document.querySelectorAll(".sidenav a");
+        var sections = Array.prototype.map.call(navLinks, function (a) {
+          return document.getElementById(a.getAttribute("href").slice(1));
+        });
+        var ticking = false;
+        function markActive() {
+          ticking = false;
+          var line = window.scrollY + window.innerHeight / 3;
+          var atEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+          var current = -1;
+          sections.forEach(function (s, i) {
+            if (s && s.offsetTop <= line) current = i;
+          });
+          if (atEnd) current = sections.length - 1;
+          navLinks.forEach(function (a, i) {
+            a.classList.toggle("active", i === current);
+          });
+        }
+        if (navLinks.length) {
+          window.addEventListener(
+            "scroll",
+            function () {
+              if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(markActive);
+              }
+            },
+            { passive: true }
+          );
+          window.addEventListener("resize", markActive);
+          markActive();
+        }
 
         // Abstract and BibTeX share the space under a paper, so opening one closes the other.
         document.querySelectorAll("[data-panel]").forEach(function (btn) {
