@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-**[DPSeg](#pub-dpseg)**, on semantic segmentation with locality guidance tokens, is published in **Neurocomputing**.
+**[DPSeg](#pub-dpseg)**, semantic segmentation with locality guidance tokens, has been published in **Neurocomputing**.
