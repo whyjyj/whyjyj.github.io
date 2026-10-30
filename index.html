@@ -41,8 +41,6 @@
         --card: #f3f1eb;
         --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         --sans: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
-        /* Date column shared by news and the timestamped rows, so their text starts on one line. */
-        --ts-col: 150px;
       }
       :root[data-theme="dark"] {
         --bg: #0f1115;
@@ -261,10 +259,14 @@
       }
       .rows li {
         display: grid;
-        grid-template-columns: var(--ts-col) 1fr;
+        grid-template-columns: 175px 1fr;
         gap: 18px;
         padding: 9px 0;
         border-bottom: 1px dashed var(--line);
+      }
+      /* Rows dated by a single month need only the news-width column. */
+      .rows.month li {
+        grid-template-columns: 90px 1fr;
       }
       .rows li:last-child {
         border-bottom: 0;
@@ -278,8 +280,8 @@
         color: var(--muted);
         font-size: 0.92rem;
       }
-      /* News: compact rows. The list bleeds 10px past the column so the text stays aligned with
-         the other sections. */
+      /* News: compact rows. The list bleeds 10px past the column so the text lines up with the
+         month-dated rows below. */
       .news {
         margin: 0 -10px;
         padding: 0;
@@ -288,7 +290,7 @@
       }
       .news li {
         display: grid;
-        grid-template-columns: var(--ts-col) 1fr;
+        grid-template-columns: 90px 1fr;
         gap: 18px;
         align-items: baseline;
         padding: 6px 10px;
@@ -533,7 +535,8 @@
           display: block;
           margin: 4px 0 0;
         }
-        .rows li {
+        .rows li,
+        .rows.month li {
           grid-template-columns: 1fr;
           gap: 0;
         }
@@ -595,7 +598,7 @@
   year    = {2026},
   doi     = {10.1016/j.neucom.2026.135268}
 }
-          </pre> </article> </section> <section class="section"> <h2> <span class="num">05</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">06</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span> </h2> <ul class="rows"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers, for EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek · Last updated Oct 2026</footer> </main> <script>
+          </pre> </article> </section> <section class="section"> <h2> <span class="num">05</span><span>Experience</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>Research and Teaching Assistant, Computer Vision Lab, POSTECH <span class="sub">Pohang, South Korea</span></span> </li> <li> <span class="ts">Jan 2024 – Jun 2024</span> <span>Undergraduate Research Intern, <a href="https://aim.skku.edu/" target="_blank" rel="noopener">AI &amp; Media (AIM) Lab</a>, <a href="https://www.skku.edu/" target="_blank" rel="noopener">Sungkyunkwan University</a> <span class="sub">Seoul, South Korea</span> <span class="sub">Advisor: <span class="nb">Prof. <a href="https://www.csehong.com/" target="_blank" rel="noopener">Sungeun Hong</a></span></span></span> </li> <li> <span class="ts">Nov 2019 – Nov 2020</span> <span>President, Student Council of the Department of Computer Education, Sungkyunkwan University <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">06</span><span>Education</span><span class="rule"></span> </h2> <ul class="rows"> <li> <span class="ts">Feb 2025 – Present</span> <span>M.S. in Artificial Intelligence, POSTECH <span class="sub">Graduate School of Artificial Intelligence</span> <span class="sub">Advisor: <span class="nb">Prof. Suha Kwak</span></span></span> </li> <li> <span class="ts">Mar 2018 – Feb 2025</span> <span>B.S. in Computer Education, Sungkyunkwan University (SKKU) <span class="sub">Advisor: <span class="nb">Prof. Sungeun Hong</span></span></span> </li> </ul> </section> <section class="section"> <h2> <span class="num">07</span><span>Honors &amp; Services</span><span class="rule"></span> </h2> <ul class="rows month"> <li id="honor-ipiu-2026"> <span class="ts">Feb 2026</span> <span><strong>Gold Prize</strong>, 38th Workshop of Image Processing and Image Understanding <span class="nb">(IPIU 2026)</span> <span class="sub">Jeju, South Korea</span> <span class="sub">Top 3 of 368 papers, for EventCoT</span></span> </li> <li> <span class="ts">Sep 2025</span> <span>Student Volunteer, Conference on Robot Learning <span class="nb">(CoRL 2025)</span> <span class="sub">Seoul, South Korea</span></span> </li> </ul> </section> <footer>© 2026 Yoonjae Baek · Last updated Oct 2026</footer> </main> <script>
       (function () {
         var root = document.documentElement;
         document.getElementById("themeToggle").addEventListener("click", function () {
